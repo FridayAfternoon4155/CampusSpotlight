@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "415876662851",
+    "firebase_url": "https://uncceventsapp-8afcf.firebaseio.com",
+    "project_id": "uncceventsapp-8afcf",
+    "storage_bucket": "uncceventsapp-8afcf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:415876662851:android:f3a021df0e622d1d",
+        "android_client_info": {
+          "package_name": "com.fridayafternoon.uncceventsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "415876662851-4q1iplmabjo0k9bpnkiibmr6ob2brjdo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fridayafternoon.uncceventsapp",
+            "certificate_hash": "4569cd0d67b48c511480ebfd1da3f5e0896a2480"
+          }
+        },
+        {
+          "client_id": "415876662851-8spt4gpijgjltpgoprghtkblgu0j9jji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxznZORBVzXjEvxLa7-xNJWbiFKYaCqWw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "415876662851-8spt4gpijgjltpgoprghtkblgu0j9jji.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
