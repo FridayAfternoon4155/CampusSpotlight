@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This is for scraping the webpage. Will start adding the code to do that soon.
      */
-    private static class ScrapeAsync extends AsyncTask<String, String, String> {
+    private static class WebScrapeAsync extends AsyncTask<String, String, String> {
         @Override
         protected String doInBackground(String... strings) {
             return null;
