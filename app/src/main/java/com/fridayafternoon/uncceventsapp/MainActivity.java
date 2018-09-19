@@ -64,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mStorage = FirebaseStorage.getInstance();
         storageReference = mStorage.getReference();
+        if (mAuth.getCurrentUser() != null) {
+            usersName = mAuth.getCurrentUser().getDisplayName();
+        }
+
 
         dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
@@ -99,23 +103,35 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.app_bar, menu);
+        if(mAuth.getCurrentUser() != null) {
+            inflater.inflate(R.menu.logout_menu, menu);
+        } else {
+            inflater.inflate(R.menu.login_menu, menu);
+        }
+
         return true;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.logoutButton){
+        if (item.getItemId() == R.id.logoutButton) {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder .setMessage("Are you sure?")
+            builder.setMessage("Are you sure?")
                     .setPositiveButton("Yes", dialogClickListener)
                     .setNegativeButton("No", dialogClickListener).show();
             return true;
+        } if (item.getItemId() == R.id.loginButton) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+
         } else {
             return false;
         }
+        return false;
     }
+
 
     /**
      * This is for scraping the webpage. Will start adding the code to do that soon.
