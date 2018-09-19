@@ -19,7 +19,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
@@ -40,6 +40,7 @@ dependencies {
     implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'net.sourceforge.htmlunit:htmlunit:2.33'
 }
 
 apply plugin: 'com.google.gms.google-services'
