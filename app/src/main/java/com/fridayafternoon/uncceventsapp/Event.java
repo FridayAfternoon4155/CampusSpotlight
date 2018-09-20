@@ -1,15 +1,28 @@
 package com.fridayafternoon.uncceventsapp;
 
 public class Event {
-    public String name, date, location, time, description, tags;
+    public String name, date, location, time, description, tags, link;
 
-    public Event(String name, String date, String location, String time, String description, String tags) {
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public Event() {
+    }
+
+    public Event(String name, String date, String location, String time, String description, String tags, String link) {
         this.name = name;
         this.date = date;
         this.location = location;
         this.time = time;
         this.description = description;
         this.tags = tags;
+        this.link = link;
     }
 
     public String getName() {

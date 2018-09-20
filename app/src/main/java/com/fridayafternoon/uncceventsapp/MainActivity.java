@@ -1,6 +1,8 @@
 package com.fridayafternoon.uncceventsapp;
 
 import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipData.Item;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,11 +18,21 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
+import com.gargoylesoftware.htmlunit.html.HtmlElement;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.net.MalformedURLException;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseStorage mStorage;
     StorageReference storageReference;
     String usersName;
+
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -48,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     mTextMessage.setText(R.string.title_notifications);
                     return true;
                 case R.id.studentLife:
+                    new WebScrapeAsync().execute();
                     mTextMessage.setText("Student-Life");
                     return true;
             }
@@ -135,16 +150,57 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This is for scraping the webpage. Will start adding the code to do that soon.
+     *
+     * The current code for reading html is wrong. I will fix later.
      */
     private static class WebScrapeAsync extends AsyncTask<String, String, String> {
         @Override
         protected String doInBackground(String... strings) {
+            WebClient client = new WebClient();
+            client.getOptions().setCssEnabled(false);
+            client.getOptions().setJavaScriptEnabled(false);
+            try {
+                //Link to events page
+                String eventsUrl = "http://events.uncc.edu/";
+                HtmlPage page = client.getPage(eventsUrl);
+                List<HtmlElement> events = page.getByXPath("//li[@class='result-row']");
+                if(events.isEmpty()){
+                    System.out.println("No items found !");
+                }else{
+                    for(HtmlElement htmlItem : events){
+                        HtmlAnchor itemAnchor = ((HtmlAnchor) htmlItem.getFirstByXPath(".//p[@class='result-info']/a"));
+                        HtmlElement spanPrice = ((HtmlElement) htmlItem.getFirstByXPath(".//a/span[@class='result-price']")) ;
+
+                        // It is possible that an item doesn't have any price, we set the price to 0.0 in this case
+                        String itemPrice = spanPrice == null ? "0.0" : spanPrice.asText() ;
+
+                        Event event = new Event();
+                        //item.setTitle(itemAnchor.asText());
+                       // item.setUrl( baseUrl + itemAnchor.getHrefAttribute());
+
+                       // item.setPrice(new BigDecimal(itemPrice.replace("$", "")));
+
+
+                        ObjectMapper mapper = new ObjectMapper();
+                        String jsonString = mapper.writeValueAsString(event) ;
+
+                        System.out.println(jsonString);
+                    }
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return null;
         }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            //Check if there are new events to add to the database.
+            // If there are add them. If not, you know what to do.
         }
 
         @Override
