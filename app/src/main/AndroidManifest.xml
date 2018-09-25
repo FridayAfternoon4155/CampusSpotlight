@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.fridayafternoon.uncceventsapp">
+    package="com.fridayafternoon.campusspotlight">
     <meta-data
         android:name="com.google.firebase.messaging.default_notification_channel_id"
         android:value="default_channel_id"/>
@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
         <activity
-            android:name=".MainActivity"
+            android:name="com.fridayafternoon.campusspotlight.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,11 +24,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".SignUpActivity" />
+        <activity android:name="com.fridayafternoon.campusspotlight.LoginActivity" />
+        <activity android:name="com.fridayafternoon.campusspotlight.SignUpActivity" />
 
         <service
-            android:name=".PushNotifications"
+            android:name="com.fridayafternoon.campusspotlight.PushNotifications"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
