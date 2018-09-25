@@ -7,7 +7,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     defaultConfig {
-        applicationId "com.fridayafternoon.uncceventsapp"
+        applicationId "com.fridayafternoon.campusspotlight"
         minSdkVersion 24
         targetSdkVersion 27
         versionCode 1
