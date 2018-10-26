@@ -51,16 +51,13 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
+                    //new WebScrapeAsync().execute();
                     return true;
                 case R.id.navigation_dashboard:
                     mTextMessage.setText(R.string.title_dashboard);
                     return true;
-                case R.id.navigation_notifications:
+                case R.id.navigation_profile:
                     mTextMessage.setText(R.string.title_notifications);
-                    return true;
-                case R.id.studentLife:
-                    new WebScrapeAsync().execute();
-                    mTextMessage.setText("Student-Life");
                     return true;
             }
             return false;
