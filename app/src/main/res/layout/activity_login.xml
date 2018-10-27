@@ -10,11 +10,9 @@
         android:id="@+id/emailLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="216dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/hint_email"
         android:inputType="textEmailAddress"
@@ -27,11 +25,9 @@
         android:id="@+id/passwordLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
@@ -44,13 +40,12 @@
         android:id="@+id/buttonLogin"
         android:layout_width="161dp"
         android:layout_height="54dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordLogin" />
 
@@ -58,9 +53,8 @@
         android:id="@+id/textViewNotRegistered"
         android:layout_width="102dp"
         android:layout_height="22dp"
-        android:layout_marginLeft="104dp"
         android:layout_marginStart="104dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="36dp"
         android:text="@string/not_registered"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
@@ -69,11 +63,9 @@
         android:id="@+id/linkSignUp"
         android:layout_width="53dp"
         android:layout_height="22dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/signUp"
         android:textColor="@android:color/black"
         android:textStyle="bold"
@@ -81,4 +73,45 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textViewNotRegistered"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="226dp"
+        android:layout_height="173dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="27dp"
+        app:layout_constraintBottom_toTopOf="@+id/emailLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/campusspotlighticonround" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top" />
 </android.support.constraint.ConstraintLayout>
