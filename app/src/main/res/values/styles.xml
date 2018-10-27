@@ -10,6 +10,7 @@
 
     <style name="UNCC" parent="Theme.AppCompat.Light.NoActionBar" >
         <item name="colorPrimary">@color/primary_material_light_1</item>
+        <item name="colorPrimaryDark">#00703C</item>
     </style>
 
     <style name="Theme">Theme</style>
