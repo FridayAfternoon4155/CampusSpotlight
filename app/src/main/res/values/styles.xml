@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">#00703C</item>
+        <item name="colorPrimaryDark">@color/primary_material_light_1</item>
+        <item name="colorAccent">#ffb5a560</item>
     </style>
 
     <style name="UNCC" parent="Theme.AppCompat.Light.NoActionBar" >
@@ -14,8 +14,13 @@
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:textColorPrimaryInverse">@android:color/black</item>
         <item name="android:colorBackground">@android:color/white</item>
+        <item name="buttonStyle">@color/colorPrimary</item>
+        <item name="colorAccent">#ffb5a560</item>
     </style>
 
     <style name="Theme">Theme</style>
+
+
+
 
 </resources>
