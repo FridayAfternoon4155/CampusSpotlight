@@ -17,8 +17,11 @@
     <string name="student_life">Student-Life</string>
     <string name="fcm_message">FCM Message</string>
     <string name="default_notification_channel_id">fcm_default_channel</string>
-    <string name="title_profile">Profile</string>
+
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="csp_logo">CSL Logo</string>
+    <string name="white_box">White Box</string>
 </resources>

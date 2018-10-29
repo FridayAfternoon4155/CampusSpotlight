@@ -19,7 +19,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/passwordLogin"
@@ -29,25 +30,28 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="@string/hint_password"
+        android:hint="@string/fui_password_hint"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/emailLogin"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="161dp"
         android:layout_height="54dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="8dp"
         android:text="@string/login"
+        android:textColor="@color/browser_actions_bg_grey"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.463"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordLogin"
+        tools:background="?attr/colorAccent" />
 
     <TextView
         android:id="@+id/textViewNotRegistered"
@@ -75,17 +79,19 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/campusLogo"
         android:layout_width="226dp"
         android:layout_height="173dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="11dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="27dp"
+        android:layout_marginBottom="9dp"
+        android:contentDescription="@string/csp_logo"
         app:layout_constraintBottom_toTopOf="@+id/emailLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/campusspotlighticonround" />
 
     <android.support.constraint.Guideline
