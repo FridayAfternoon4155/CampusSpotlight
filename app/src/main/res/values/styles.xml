@@ -8,7 +8,7 @@
         <item name="colorAccent">#ffb5a560</item>
     </style>
 
-    <style name="UNCC" parent="Theme.AppCompat.Light.NoActionBar" >
+    <style name="UNCC" parent="Theme.AppCompat.Light.DarkActionBar" >
         <item name="colorPrimary">#00703C</item>
         <item name="colorPrimaryDark">@color/primary_material_light_1</item>
         <item name="android:textColorPrimary">@android:color/white</item>

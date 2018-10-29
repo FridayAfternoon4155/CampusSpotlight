@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseStorage mStorage;
     StorageReference storageReference;
     String usersName;
+    Button logout;
 
 
 

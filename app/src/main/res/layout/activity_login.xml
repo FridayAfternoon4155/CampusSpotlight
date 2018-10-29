@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/whiteBox"
         android:layout_width="289dp"
-        android:layout_height="417dp"
+        android:layout_height="473dp"
         android:layout_marginStart="46dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="45dp"
@@ -22,7 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.268"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@color/cardview_light_background" />
 
     <ImageView
@@ -30,7 +30,7 @@
         android:layout_width="179dp"
         android:layout_height="153dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
         android:contentDescription="@string/csp_logo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -110,8 +110,8 @@
         android:id="@+id/textViewNotRegistered"
         android:layout_width="110dp"
         android:layout_height="31dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="32dp"
         android:text="@string/not_registered"
         android:textColor="@color/primary_material_light_1"
         android:textStyle="bold"
@@ -122,18 +122,18 @@
         android:id="@+id/linkSignUp"
         android:layout_width="68dp"
         android:layout_height="29dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="100dp"
         android:layout_marginBottom="8dp"
         android:text="@string/signUp"
         android:textColor="@color/primary_material_light_1"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textViewNotRegistered"
-        app:layout_constraintTop_toBottomOf="@+id/whiteBox"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
         app:layout_constraintVertical_bias="0.0"
         tools:textColor="@android:color/holo_orange_light" />
 
@@ -156,7 +156,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
+        app:layout_constraintGuide_begin="-65dp" />
 
     <android.support.constraint.Barrier
         android:id="@+id/barrier2"
