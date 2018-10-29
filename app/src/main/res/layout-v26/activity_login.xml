@@ -44,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:autofillHints=""
         android:ems="10"
@@ -52,7 +53,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="260dp" />
+        app:layout_constraintTop_toBottomOf="@+id/headline" />
 
     <EditText
         android:id="@+id/passwordLogin"
@@ -148,16 +149,13 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:fontFamily="@font/norwester"
         android:text="@string/headline"
         android:textAlignment="center"
         android:textColor="@color/primary_material_light_1"
         android:textSize="26sp"
-        app:layout_constraintBottom_toTopOf="@+id/emailLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/campusLogo"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/campusLogo" />
 
 </android.support.constraint.ConstraintLayout>
