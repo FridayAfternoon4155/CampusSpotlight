@@ -11,6 +11,9 @@
     <style name="UNCC" parent="Theme.AppCompat.Light.NoActionBar" >
         <item name="colorPrimary">#00703C</item>
         <item name="colorPrimaryDark">@color/primary_material_light_1</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorPrimaryInverse">@android:color/black</item>
+        <item name="android:colorBackground">@android:color/white</item>
     </style>
 
     <style name="Theme">Theme</style>
