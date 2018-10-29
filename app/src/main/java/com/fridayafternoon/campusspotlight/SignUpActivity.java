@@ -50,8 +50,8 @@ public class SignUpActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.contactEmail);
         etPassword = findViewById(R.id.contactPassword);
         etPasswordRepeat = findViewById(R.id.passwordSignUpRepeat);
-        buttonSignUp = findViewById(R.id.buttonAddContact);
-        buttonCancel = findViewById(R.id.buttonCancel);
+        //buttonSignUp = findViewById(R.id.buttonAddContact);
+        //buttonCancel = findViewById(R.id.buttonCancel);
 
 
         buttonSignUp.setOnClickListener(new View.OnClickListener() {

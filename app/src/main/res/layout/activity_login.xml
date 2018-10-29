@@ -27,7 +27,7 @@
         android:layout_width="179dp"
         android:layout_height="153dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:contentDescription="@string/csp_logo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +67,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headline" />
+        app:layout_constraintTop_toBottomOf="@+id/headline" tools:targetApi="o"/>
 
     <EditText
         android:id="@+id/passwordLogin"
@@ -84,7 +84,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/emailLogin" tools:targetApi="o"/>
 
     <Button
         android:id="@+id/buttonLogin"
@@ -105,10 +105,10 @@
 
     <TextView
         android:id="@+id/textViewNotRegistered"
-        android:layout_width="120dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="113dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="20dp"
         android:text="@string/not_registered"
         android:textColor="@color/primary_material_light_1"
         android:textSize="15sp"
@@ -121,13 +121,13 @@
         android:layout_width="68dp"
         android:layout_height="29dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:text="@string/signUp"
         android:textColor="@color/primary_material_light_1"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.227"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textViewNotRegistered"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
         tools:textColor="@android:color/holo_orange_light" />
