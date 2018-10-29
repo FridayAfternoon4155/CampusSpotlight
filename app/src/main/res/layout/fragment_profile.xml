@@ -12,5 +12,6 @@
         android:id="@+id/profileImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:adjustViewBounds="false"
         tools:src="@tools:sample/avatars" />
 </FrameLayout>
