@@ -45,10 +45,10 @@ public class SignUpActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
 
-        etFirstName = findViewById(R.id.contactFirstName);
-        etLastName = findViewById(R.id.contactLastName);
-        etEmail = findViewById(R.id.contactEmail);
-        etPassword = findViewById(R.id.contactPassword);
+        etFirstName = findViewById(R.id.FName);
+        etLastName = findViewById(R.id.LName);
+        etEmail = findViewById(R.id.Email);
+        etPassword = findViewById(R.id.Password);
         etPasswordRepeat = findViewById(R.id.passwordSignUpRepeat);
         //buttonSignUp = findViewById(R.id.buttonAddContact);
         //buttonCancel = findViewById(R.id.buttonCancel);

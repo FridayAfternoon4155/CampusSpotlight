@@ -7,11 +7,11 @@
     tools:context=".SignUpActivity">
 
     <EditText
-        android:id="@+id/contactFirstName"
+        android:id="@+id/FName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="208dp"
+        android:layout_marginTop="156dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/hint_first_name"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/contactLastName"
+        android:id="@+id/LName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -36,10 +36,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contactFirstName" />
+        app:layout_constraintTop_toBottomOf="@+id/FName" />
 
     <EditText
-        android:id="@+id/contactEmail"
+        android:id="@+id/Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -52,10 +52,10 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contactLastName" />
+        app:layout_constraintTop_toBottomOf="@+id/LName" />
 
     <EditText
-        android:id="@+id/contactPassword"
+        android:id="@+id/Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -68,22 +68,50 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contactEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/Email" />
 
     <EditText
         android:id="@+id/passwordSignUpRepeat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/hint_password_repeat"
         android:inputType="textPassword"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="370dp" />
+
+    <Button
+        android:id="@+id/buttonCancel"
+        style="@style/FirebaseUI.Button.AccountChooser"
+        android:layout_width="116dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/norwester"
+        android:text="@string/button_cancel"
+        android:textAlignment="center"
+        android:textColor="@color/browser_actions_bg_grey"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.218"
+        app:layout_constraintStart_toEndOf="@+id/buttonAddContact"
+        app:layout_constraintTop_toBottomOf="@+id/passwordSignUpRepeat"
+        tools:background="@color/primary_material_light_1" />
+
+    <Button
+        android:id="@+id/buttonAddContact"
+        style="@style/FirebaseUI.Button"
+        android:layout_width="116dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/norwester"
+        android:text="@string/signUp"
+        android:textAlignment="center"
+        android:textColor="@color/browser_actions_bg_grey"
+        android:textColorLink="@color/primary_material_light_1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contactPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordSignUpRepeat"
+        tools:background="@color/primary_material_light_1" />
 
 </android.support.constraint.ConstraintLayout>
