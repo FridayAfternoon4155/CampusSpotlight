@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/campusspotlighticonround"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light">
+        android:theme="@style/UNCC">
         <activity
             android:name="com.fridayafternoon.campusspotlight.MainActivity"
             android:label="@string/app_name"
