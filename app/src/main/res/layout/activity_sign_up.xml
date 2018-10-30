@@ -19,7 +19,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/camera" />
+        app:layout_constraintTop_toBottomOf="@+id/camera"
+        android:autofillHints="" tools:targetApi="o" />
 
     <EditText
         android:id="@+id/LName"
@@ -36,7 +37,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FName" />
+        app:layout_constraintTop_toBottomOf="@+id/FName"
+        android:autofillHints="" tools:targetApi="o" />
 
     <EditText
         android:id="@+id/Email"
@@ -52,7 +54,8 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LName" />
+        app:layout_constraintTop_toBottomOf="@+id/LName"
+        android:autofillHints="" tools:targetApi="o" />
 
     <EditText
         android:id="@+id/Password"
@@ -68,7 +71,8 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Email" />
+        app:layout_constraintTop_toBottomOf="@+id/Email"
+        android:autofillHints="" tools:targetApi="o" />
 
     <EditText
         android:id="@+id/passwordSignUpRepeat"
@@ -82,7 +86,8 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Password" />
+        app:layout_constraintTop_toBottomOf="@+id/Password"
+        android:autofillHints="" tools:targetApi="o" />
 
     <Button
         android:id="@+id/buttonCancel"
@@ -130,6 +135,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/camera_icon" />
+        app:srcCompat="@drawable/camera_icon"
+        android:contentDescription="@string/todo" />
 
 </android.support.constraint.ConstraintLayout>
