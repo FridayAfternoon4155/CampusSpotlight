@@ -67,7 +67,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headline" />
+        app:layout_constraintTop_toBottomOf="@+id/headline" tools:targetApi="o"/>
 
     <EditText
         android:id="@+id/passwordLogin"
@@ -84,7 +84,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/emailLogin" tools:targetApi="o"/>
 
     <Button
         android:id="@+id/buttonLogin"
