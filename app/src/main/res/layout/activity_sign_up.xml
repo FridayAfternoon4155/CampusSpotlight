@@ -11,15 +11,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/hint_first_name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <EditText
         android:id="@+id/LName"
@@ -74,37 +74,43 @@
         android:id="@+id/passwordSignUpRepeat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/hint_password_repeat"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="370dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Password" />
 
     <Button
         android:id="@+id/buttonCancel"
         style="@style/FirebaseUI.Button.AccountChooser"
         android:layout_width="116dp"
         android:layout_height="52dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/primary_material_light_1"
         android:fontFamily="@font/norwester"
         android:text="@string/button_cancel"
         android:textAlignment="center"
         android:textColor="@color/browser_actions_bg_grey"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.218"
-        app:layout_constraintStart_toEndOf="@+id/buttonAddContact"
+        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintStart_toEndOf="@+id/buttonSignUp"
         app:layout_constraintTop_toBottomOf="@+id/passwordSignUpRepeat"
         tools:background="@color/primary_material_light_1" />
 
     <Button
-        android:id="@+id/buttonAddContact"
+        android:id="@+id/buttonSignUp"
         style="@style/FirebaseUI.Button"
         android:layout_width="116dp"
         android:layout_height="52dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/primary_material_light_1"
         android:fontFamily="@font/norwester"
         android:text="@string/signUp"
         android:textAlignment="center"
@@ -113,5 +119,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordSignUpRepeat"
         tools:background="@color/primary_material_light_1" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="216dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/camera_icon" />
 
 </android.support.constraint.ConstraintLayout>

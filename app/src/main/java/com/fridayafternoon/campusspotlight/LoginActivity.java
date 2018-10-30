@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
                 startActivity(intent);
-                finish();
+
             }
         });
 
@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(LoginActivity.this, "Login Button.", Toast.LENGTH_SHORT).show();
-                Snackbar.make(view, "You Logged In!", Snackbar.LENGTH_SHORT).show();
+                //Snackbar.make(view, "You Logged In!", Snackbar.LENGTH_SHORT).show();
                 String email = emailLogin.getText().toString().trim();
                 String password = passwordLogin.getText().toString().trim();
 

@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     FirebaseStorage mStorage;
     StorageReference storageReference;
     String usersName;
-    Button logout;
 
 
 
