@@ -44,7 +44,7 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         database = FirebaseDatabase.getInstance();
-
+        image = findViewById(R.id.camera);
         etFirstName = findViewById(R.id.FName);
         etLastName = findViewById(R.id.LName);
         etEmail = findViewById(R.id.Email);
