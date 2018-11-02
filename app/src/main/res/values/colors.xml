@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="primary_material_light_1">#176536</color>
     <color name="accent_material_light">#b5a560</color>
+    <color name="uncGold">#b4a45f</color>
 </resources>

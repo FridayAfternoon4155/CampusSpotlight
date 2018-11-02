@@ -27,4 +27,16 @@
     <string name="headline">Campus SpotLight</string>
     <string name="title_profile">Profile</string>
     <string name="todo">TODO</string>
+    <string name="bookmark_going">Bookmark Going</string>
+    <string name="date_time">Date and Time</string>
+    <string name="eventTitle">Title</string>
+    <string name="category">Category</string>
+    <string name="profilePanel">Profile Panel</string>
+    <string name="profilePicture">Profile Picture</string>
+    <string name="profileName">Users Name</string>
+    <string name="profileEmail">Profile Email</string>
+    <string name="editProfile">Edit Profile</string>
+    <string name="fadedLogo">Faded Logo</string>
+    <string name="profileEvents">My Events</string>
+    <string name="myEventsPanel">My Events Panel</string>
 </resources>

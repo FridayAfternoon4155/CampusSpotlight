@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileFragment">
@@ -9,9 +10,114 @@
     <!-- TODO: Update blank fragment layout -->
 
     <ImageView
-        android:id="@+id/profileImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="false"
-        tools:src="@tools:sample/avatars" />
-</FrameLayout>
+        android:id="@+id/Profilepanel"
+        android:layout_width="385dp"
+        android:layout_height="176dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/profilePanel"
+        android:src="@color/primary_material_light_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/My Events Panel"
+        android:layout_width="387dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/myEventsPanel"
+        android:src="@color/uncGold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Profilepanel" />
+
+    <TextView
+        android:id="@+id/Profile Events"
+        android:layout_width="128dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/norwester"
+        android:text="@string/profileEvents"
+        android:textAlignment="center"
+        android:textColor="@color/browser_actions_bg_grey"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/My Events Panel" />
+
+    <ImageView
+        android:id="@+id/Profile Pictrure"
+        android:layout_width="192dp"
+        android:layout_height="240dp"
+        android:contentDescription="@string/profilePicture"
+        android:src="@drawable/ic_launcher_cameraround"
+        app:layout_constraintStart_toStartOf="@+id/Profilepanel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Profile Name"
+        android:layout_width="172dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="68dp"
+        android:fontFamily="@font/norwester"
+        android:text="@string/profileName"
+        android:textAlignment="center"
+        android:textColor="@color/browser_actions_bg_grey"
+        android:textSize="24sp"
+        android:typeface="sans"
+        app:layout_constraintStart_toEndOf="@+id/Profile Pictrure"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Profile Email"
+        android:layout_width="172dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="4dp"
+        android:text="@string/profileEmail"
+        android:textAlignment="center"
+        android:textColor="@color/browser_actions_bg_grey"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        app:layout_constraintStart_toEndOf="@+id/Profile Pictrure"
+        app:layout_constraintTop_toBottomOf="@+id/Profile Name" />
+
+    <ImageButton
+        android:id="@+id/Edit Profile"
+        android:layout_width="54dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="328dp"
+        android:background="@color/fui_transparent"
+        android:contentDescription="@string/editProfile"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_launcher_neweditbutton_round"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/Faded Logo"
+        android:layout_width="368dp"
+        android:layout_height="197dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="8dp"
+
+        android:alpha="0.24"
+        android:contentDescription="@string/fadedLogo"
+        android:src="@drawable/campusspotlighticonround"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Profilepanel"
+
+
+        />
+
+</android.support.constraint.ConstraintLayout>

@@ -11,35 +11,33 @@
         android:id="@+id/category"
         android:layout_width="106dp"
         android:layout_height="23dp"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:layout_marginStart="148dp"
+        android:text="@string/category"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewDate"
-        android:layout_width="70dp"
-        android:layout_height="26dp"
+        android:id="@+id/Date andTime"
+        android:layout_width="81dp"
+        android:layout_height="51dp"
         android:layout_marginStart="4dp"
-        android:text="Date"
+        android:text="@string/date_time"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textViewDescription"
-        android:layout_width="214dp"
-        android:layout_height="44dp"
+        android:id="@+id/EventTitle"
+        android:layout_width="232dp"
+        android:layout_height="55dp"
         android:layout_marginStart="84dp"
-        android:layout_marginTop="8dp"
-        android:text="Description"
+        android:fontFamily="@font/norwester"
+        android:text="@string/eventTitle"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="24sp"
-        android:textStyle="bold"
         android:typeface="serif"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/category" />
@@ -50,10 +48,11 @@
         android:layout_height="46dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
+        android:background="@color/browser_actions_divider_color"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_launcher_round"
+        app:srcCompat="@drawable/ic_launcher_bookmarkround"
         tools:background="@color/browser_actions_divider_color" />
 
 </android.support.constraint.ConstraintLayout>
