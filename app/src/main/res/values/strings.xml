@@ -38,5 +38,10 @@
     <string name="editProfile">Edit Profile</string>
     <string name="fadedLogo">Faded Logo</string>
     <string name="profileEvents">My Events</string>
-    <string name="myEventsPanel">My Events Panel</string>
+    <string name="profileTitlePanel">Profile Panel</string>
+    <string name="signOutButton">Sign Out</string>
+    <string name="profileHeadline">Profile</string>
+    <string name="topPanel">topPanel</string>
+    <string name="middlePanel">middlePanel</string>
 </resources>
+
