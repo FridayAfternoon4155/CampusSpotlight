@@ -28,7 +28,7 @@
     <string name="title_profile">Profile</string>
     <string name="todo">TODO</string>
     <string name="bookmark_going">Bookmark Going</string>
-    <string name="date_time">Date and Time</string>
+    <string name="dateTime">Date and Time</string>
     <string name="eventTitle">Title</string>
     <string name="category">Category</string>
     <string name="profilePanel">Profile Panel</string>
@@ -43,5 +43,7 @@
     <string name="profileHeadline">Profile</string>
     <string name="topPanel">topPanel</string>
     <string name="middlePanel">middlePanel</string>
+    <string name="cost">Cost</string>
+    <string name="location">Event Location</string>
 </resources>
 
