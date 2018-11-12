@@ -58,7 +58,11 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
-                    new GetXMLAsync().execute();
+                    try {
+                        new GetXMLAsync().execute();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     return true;
                 case R.id.navigation_dashboard:
                     mTextMessage.setText(R.string.title_dashboard);
