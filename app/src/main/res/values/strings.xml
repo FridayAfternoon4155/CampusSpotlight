@@ -47,5 +47,6 @@
     <string name="location">Event Location</string>
     <string name="calendarPic">calendarPic</string>
     <string name="dollarSign">dollarSign</string>
+    <string name="date_time">Date/time</string>
 </resources>
 

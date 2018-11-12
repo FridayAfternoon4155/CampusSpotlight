@@ -28,6 +28,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -37,6 +42,10 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -173,17 +182,45 @@ public class MainActivity extends AppCompatActivity {
                 XmlPullParser myparser = xmlFactoryObject.newPullParser();
                 myparser.setInput(inputStream, null);
 
+                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                Document doc = dBuilder.parse(inputStream);
 
+                Element element=doc.getDocumentElement();
+                element.normalize();
 
+                NodeList nodeList = doc.getElementsByTagName("item");
 
+                for (int i=0; i<nodeList.getLength(); i++) {
+
+                    Node node = nodeList.item(i);
+                    if (node.getNodeType() == Node.ELEMENT_NODE) {
+                        Element element2 = (Element) node;
+//                        tv1.setText(tv1.getText()+"\nName : " + getValue("name", element2)+"\n");
+//                        tv1.setText(tv1.getText()+"Surname : " + getValue("surname", element2)+"\n");
+//                        tv1.setText(tv1.getText()+"-----------------------");
+                    }
+                }
 
 
 
             } catch (XmlPullParserException e) {
                 e.printStackTrace();
+            } catch (ParserConfigurationException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (SAXException e) {
+                e.printStackTrace();
             }
 
             return null;
+        }
+
+        private static String getValue(String tag, Element element) {
+            NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
+            Node node = nodeList.item(0);
+            return node.getNodeValue();
         }
 
         @Override
