@@ -28,8 +28,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
-                    //new WebScrapeAsync().execute();
+                    new GetXMLAsync().execute();
                     return true;
                 case R.id.navigation_dashboard:
                     mTextMessage.setText(R.string.title_dashboard);
@@ -148,46 +154,31 @@ public class MainActivity extends AppCompatActivity {
      *
      * The current code for reading html is wrong. I will fix later.
      */
-    private static class WebScrapeAsync extends AsyncTask<String, String, String> {
+    private static class GetXMLAsync extends AsyncTask<String, String, String> {
+        private InputStream inputStream = new URL("https://campusevents.uncc.edu/feed/cci-student-xml").openStream();
+
+        private GetXMLAsync() throws IOException {
+        }
+
         @Override
         protected String doInBackground(String... strings) {
-            WebClient client = new WebClient();
-            client.getOptions().setCssEnabled(false);
-            client.getOptions().setJavaScriptEnabled(false);
+
+            XmlPullParserFactory xmlFactoryObject = null;
             try {
-                //Link to events page
-                String eventsUrl = "http://events.uncc.edu/";
-                HtmlPage page = client.getPage(eventsUrl);
-                List<HtmlElement> events = page.getByXPath("//li[@class='result-row']");
-                if(events.isEmpty()){
-                    System.out.println("No items found !");
-                }else{
-                    for(HtmlElement htmlItem : events){
-                        HtmlAnchor itemAnchor = ((HtmlAnchor) htmlItem.getFirstByXPath(".//p[@class='result-info']/a"));
-                        HtmlElement spanPrice = ((HtmlElement) htmlItem.getFirstByXPath(".//a/span[@class='result-price']")) ;
-
-                        // It is possible that an item doesn't have any price, we set the price to 0.0 in this case
-                        String itemPrice = spanPrice == null ? "0.0" : spanPrice.asText() ;
-
-                        Event event = new Event();
-                        //item.setTitle(itemAnchor.asText());
-                       // item.setUrl( baseUrl + itemAnchor.getHrefAttribute());
-
-                       // item.setPrice(new BigDecimal(itemPrice.replace("$", "")));
+                xmlFactoryObject = XmlPullParserFactory.newInstance();
+                XmlPullParser myparser = xmlFactoryObject.newPullParser();
+                myparser.setInput(inputStream, null);
 
 
-                        ObjectMapper mapper = new ObjectMapper();
-                        String jsonString = mapper.writeValueAsString(event) ;
 
-                        System.out.println(jsonString);
-                    }
-                }
 
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+
+
+
+            } catch (XmlPullParserException e) {
                 e.printStackTrace();
             }
+
             return null;
         }
 
