@@ -235,21 +235,9 @@ public class MainActivity extends AppCompatActivity {
                             });
                     }
                 }
- 
-
-
-
-
-            } catch (XmlPullParserException e) {
-                e.printStackTrace();
-            } catch (ParserConfigurationException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (SAXException e) {
+            } catch (XmlPullParserException | IOException | ParserConfigurationException | SAXException e) {
                 e.printStackTrace();
             }
-
             return null;
         }
 
