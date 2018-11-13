@@ -186,21 +186,36 @@ public class MainActivity extends AppCompatActivity {
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
                 Document doc = dBuilder.parse(inputStream);
 
-                Element element=doc.getDocumentElement();
+                Element element = doc.getDocumentElement();
                 element.normalize();
 
                 NodeList nodeList = doc.getElementsByTagName("item");
 
                 for (int i=0; i<nodeList.getLength(); i++) {
-
                     Node node = nodeList.item(i);
                     if (node.getNodeType() == Node.ELEMENT_NODE) {
-                        Element element2 = (Element) node;
-//                        tv1.setText(tv1.getText()+"\nName : " + getValue("name", element2)+"\n");
-//                        tv1.setText(tv1.getText()+"Surname : " + getValue("surname", element2)+"\n");
-//                        tv1.setText(tv1.getText()+"-----------------------");
+                        Element item = (Element) node;
+                        String count;
+                        String title;
+                        String eventDatetime;
+                        String location;
+                        String eventType;
+                        String organization;
+                        String path;
+
+                        count = getValue("count", item);
+                        title = getValue("title", item);
+                        eventDatetime = getValue("event-datetime", item);
+                        location = getValue("location", item);
+                        eventType = getValue("event-type", item);
+                        organization = getValue("organization", item);
+                        path = getValue("path", item);
+
+
                     }
                 }
+
+
 
 
 

@@ -9,8 +9,8 @@
 
     <TextView
         android:id="@+id/date_time"
-        android:layout_width="170dp"
-        android:layout_height="31dp"
+        android:layout_width="160dp"
+        android:layout_height="35dp"
         android:layout_marginTop="128dp"
         android:text="@string/dateTime"
         android:textAlignment="center"
@@ -61,9 +61,9 @@
 
     <TextView
         android:id="@+id/cost"
-        android:layout_width="54dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="76dp"
+        android:layout_width="41dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="84dp"
         android:layout_marginEnd="16dp"
         android:text="@string/cost"
         android:textAlignment="center"
