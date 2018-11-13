@@ -104,6 +104,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+        try {
+            new GetXMLAsync().execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -174,7 +180,8 @@ public class MainActivity extends AppCompatActivity {
      * The current code for reading html is wrong. I will fix later.
      */
     private static class GetXMLAsync extends AsyncTask<String, String, String> {
-        private InputStream inputStream = new URL("https://campusevents.uncc.edu/feed/cci-student-xml").openStream();
+        //TODO Fix inputStream issue.
+        InputStream inputStream = new URL("https://campusevents.uncc.edu/feed/cci-student-xml").openStream();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         private GetXMLAsync() throws IOException {}
