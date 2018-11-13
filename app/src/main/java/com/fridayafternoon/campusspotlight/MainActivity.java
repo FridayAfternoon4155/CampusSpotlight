@@ -176,12 +176,11 @@ public class MainActivity extends AppCompatActivity {
     private static class GetXMLAsync extends AsyncTask<String, String, String> {
         private InputStream inputStream = new URL("https://campusevents.uncc.edu/feed/cci-student-xml").openStream();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        private GetXMLAsync() throws IOException {
-        }
+
+        private GetXMLAsync() throws IOException {}
 
         @Override
         protected String doInBackground(String... strings) {
-
             XmlPullParserFactory xmlFactoryObject = null;
             try {
                 xmlFactoryObject = XmlPullParserFactory.newInstance();
@@ -263,8 +262,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //Check if there are new events to add to the database.
-            // If there are add them. If not, you know what to do.
+            //TODO Check if there are new events to add to the database. If there are add them. If not, you know what to do.
+
         }
 
         @Override
