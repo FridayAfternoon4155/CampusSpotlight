@@ -43,6 +43,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -73,11 +74,9 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
-                    try {
+
                         new GetXMLAsync().execute();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+
                     return true;
                 case R.id.navigation_dashboard:
                     mTextMessage.setText(R.string.title_dashboard);
@@ -103,12 +102,8 @@ public class MainActivity extends AppCompatActivity {
             usersName = mAuth.getCurrentUser().getDisplayName();
         }
 
-
-        try {
             new GetXMLAsync().execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
 
         dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
@@ -136,8 +131,8 @@ public class MainActivity extends AppCompatActivity {
         //set users name
         //usersName.setText(mAuth.getCurrentUser().getDisplayName());
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        mTextMessage = findViewById(R.id.message);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
@@ -179,67 +174,77 @@ public class MainActivity extends AppCompatActivity {
      *
      * The current code for reading html is wrong. I will fix later.
      */
-    private static class GetXMLAsync extends AsyncTask<String, String, String> {
+    private class GetXMLAsync extends AsyncTask<String, String, String> {
+
+
         //TODO Fix inputStream issue.
-        InputStream inputStream = new URL("https://campusevents.uncc.edu/feed/cci-student-xml").openStream();
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        private GetXMLAsync() throws IOException {}
+        private GetXMLAsync() {}
 
         @Override
         protected String doInBackground(String... strings) {
-            XmlPullParserFactory xmlFactoryObject = null;
             try {
-                xmlFactoryObject = XmlPullParserFactory.newInstance();
-                XmlPullParser myparser = xmlFactoryObject.newPullParser();
-                myparser.setInput(inputStream, null);
+                    HttpURLConnection connection = null;
+                    URL url = new URL("https://campusevents.uncc.edu/feed/cci-student-xml");
+                    connection = (HttpURLConnection) url.openConnection();
+                    connection.connect();
+                if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    InputStream inputStream = url.openStream();
+                    XmlPullParserFactory xmlFactoryObject = null;
 
-                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-                Document doc = dBuilder.parse(inputStream);
+                    xmlFactoryObject = XmlPullParserFactory.newInstance();
+                    XmlPullParser myparser = xmlFactoryObject.newPullParser();
+                    myparser.setInput(inputStream, null);
 
-                Element element = doc.getDocumentElement();
-                element.normalize();
+                    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                    Document doc = dBuilder.parse(inputStream);
 
-                NodeList nodeList = doc.getElementsByTagName("item");
+                    Element element = doc.getDocumentElement();
+                    element.normalize();
 
-                for (int i=0; i<nodeList.getLength(); i++) {
-                    Node node = nodeList.item(i);
-                    Map<String, Object> event = new HashMap<>();
-                    if (node.getNodeType() == Node.ELEMENT_NODE) {
-                        Element item = (Element) node;
+                    NodeList nodeList = doc.getElementsByTagName("item");
 
-                        String count = getValue("count", item);
-                        String title = getValue("title", item);
-                        String eventDatetime = getValue("event-datetime", item);
-                        String location = getValue("location", item);
-                        String eventType = getValue("event-type", item);
-                        String organization = getValue("organization", item);
-                        String path = getValue("path", item);
+                    for (int i = 0; i < nodeList.getLength(); i++) {
+                        Node node = nodeList.item(i);
+                        Map<String, Object> event = new HashMap<>();
+                        if (node.getNodeType() == Node.ELEMENT_NODE) {
+                            Element item = (Element) node;
 
-                        event.put("count", count);
-                        event.put("title", title);
-                        event.put("eventDatetime", eventDatetime);
-                        event.put("location", location);
-                        event.put("eventType", eventType);
-                        event.put("organization", organization);
-                        event.put("path", path);
+                            String count = getValue("count", item);
+                            String title = getValue("title", item);
+                            String eventDatetime = getValue("event-datetime", item);
+                            String location = getValue("location", item);
+                            String eventType = getValue("event-type", item);
+                            String organization = getValue("organization", item);
+                            String path = getValue("path", item);
 
-                        db.collection("events")
-                                .document("event")
-                                .set(event)
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.i("info", "onSuccess: Event Added. ");
-                            }
-                        })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.i("info", "onFailure: Failed to add event.");
-                                }
-                            });
+                            event.put("count", count);
+                            event.put("title", title);
+                            event.put("eventDatetime", eventDatetime);
+                            event.put("location", location);
+                            event.put("eventType", eventType);
+                            event.put("organization", organization);
+                            event.put("path", path);
+
+                            db.collection("events")
+                                    .document("event")
+                                    .set(event)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.i("info", "onSuccess: Event Added. ");
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.i("info", "onFailure: Failed to add event.");
+                                        }
+                                    });
+                        }
                     }
                 }
             } catch (XmlPullParserException | IOException | ParserConfigurationException | SAXException e) {
@@ -248,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
 
-        private static String getValue(String tag, Element element) {
+        private String getValue(String tag, Element element) {
             NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
             Node node = nodeList.item(0);
             return node.getNodeValue();
