@@ -35,8 +35,10 @@
         android:layout_height="24dp"
         android:contentDescription="@string/middlePanel"
         android:src="@color/uncGold"
-        app:layout_constraintTop_toBottomOf="@+id/profileImage"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintBottom_toTopOf="@+id/profilePanel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
     <ImageView
         android:id="@+id/TopPanel"
