@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,9 +23,12 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -41,7 +45,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -169,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private static class GetXMLAsync extends AsyncTask<String, String, String> {
         private InputStream inputStream = new URL("https://campusevents.uncc.edu/feed/cci-student-xml").openStream();
-
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         private GetXMLAsync() throws IOException {
         }
 
@@ -193,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i=0; i<nodeList.getLength(); i++) {
                     Node node = nodeList.item(i);
+                    Map<String, Object> event = new HashMap<>();
                     if (node.getNodeType() == Node.ELEMENT_NODE) {
                         Element item = (Element) node;
 
@@ -204,7 +211,29 @@ public class MainActivity extends AppCompatActivity {
                         String organization = getValue("organization", item);
                         String path = getValue("path", item);
 
+                        event.put("count", count);
+                        event.put("title", title);
+                        event.put("eventDatetime", eventDatetime);
+                        event.put("location", location);
+                        event.put("eventType", eventType);
+                        event.put("organization", organization);
+                        event.put("path", path);
 
+                        db.collection("events")
+                                .document("event")
+                                .set(event)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.i("info", "onSuccess: Event Added. ");
+                            }
+                        })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.i("info", "onFailure: Failed to add event.");
+                                }
+                            });
                     }
                 }
 
