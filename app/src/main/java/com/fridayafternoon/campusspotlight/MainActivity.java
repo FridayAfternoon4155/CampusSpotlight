@@ -195,21 +195,14 @@ public class MainActivity extends AppCompatActivity {
                     Node node = nodeList.item(i);
                     if (node.getNodeType() == Node.ELEMENT_NODE) {
                         Element item = (Element) node;
-                        String count;
-                        String title;
-                        String eventDatetime;
-                        String location;
-                        String eventType;
-                        String organization;
-                        String path;
 
-                        count = getValue("count", item);
-                        title = getValue("title", item);
-                        eventDatetime = getValue("event-datetime", item);
-                        location = getValue("location", item);
-                        eventType = getValue("event-type", item);
-                        organization = getValue("organization", item);
-                        path = getValue("path", item);
+                        String count = getValue("count", item);
+                        String title = getValue("title", item);
+                        String eventDatetime = getValue("event-datetime", item);
+                        String location = getValue("location", item);
+                        String eventType = getValue("event-type", item);
+                        String organization = getValue("organization", item);
+                        String path = getValue("path", item);
 
 
                     }
