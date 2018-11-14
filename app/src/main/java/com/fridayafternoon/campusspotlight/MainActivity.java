@@ -206,6 +206,13 @@ public class MainActivity extends AppCompatActivity {
                     element.normalize();
 
                     NodeList nodeList = doc.getElementsByTagName("item");
+                    String count;
+                    String title;
+                    String eventDatetime;
+                    String location;
+                    String eventType;
+                    String organization;
+                    String path;
 
                     for (int i = 0; i < nodeList.getLength(); i++) {
                         Node node = nodeList.item(i);
@@ -213,13 +220,13 @@ public class MainActivity extends AppCompatActivity {
                         if (node.getNodeType() == Node.ELEMENT_NODE) {
                             Element item = (Element) node;
 
-                            String count = getValue("count", item);
-                            String title = getValue("title", item);
-                            String eventDatetime = getValue("event-datetime", item);
-                            String location = getValue("location", item);
-                            String eventType = getValue("event-type", item);
-                            String organization = getValue("organization", item);
-                            String path = getValue("path", item);
+                            count = getValue("count", item);
+                            title = getValue("title", item);
+                            eventDatetime = getValue("event-datetime", item);
+                            location = getValue("location", item);
+                            eventType = getValue("event-type", item);
+                            organization = getValue("organization", item);
+                            path = getValue("path", item);
 
                             event.put("count", count);
                             event.put("title", title);
