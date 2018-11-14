@@ -73,16 +73,16 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    //mTextMessage.setText(R.string.title_home);
 
                         new GetXMLAsync().execute();
 
                     return true;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                    //mTextMessage.setText(R.string.title_dashboard);
                     return true;
                 case R.id.navigation_profile:
-                    mTextMessage.setText(R.string.title_notifications);
+                    //mTextMessage.setText(R.string.title_notifications);
                     return true;
             }
             return false;
@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
             usersName = mAuth.getCurrentUser().getDisplayName();
         }
 
-            new GetXMLAsync().execute();
 
 
         dialogClickListener = new DialogInterface.OnClickListener() {
@@ -175,13 +174,7 @@ public class MainActivity extends AppCompatActivity {
      * The current code for reading html is wrong. I will fix later.
      */
     private class GetXMLAsync extends AsyncTask<String, String, String> {
-
-
-        //TODO Fix inputStream issue.
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        private GetXMLAsync() {}
 
         @Override
         protected String doInBackground(String... strings) {
@@ -206,13 +199,13 @@ public class MainActivity extends AppCompatActivity {
                     element.normalize();
 
                     NodeList nodeList = doc.getElementsByTagName("item");
-                    String count;
-                    String title;
-                    String eventDatetime;
-                    String location;
-                    String eventType;
-                    String organization;
-                    String path;
+                    String count = "";
+                    String title = "";
+                    String eventDatetime = "";
+                    String location = "";
+                    String eventType = "";
+                    String organization = "";
+                    String path = "";
 
                     for (int i = 0; i < nodeList.getLength(); i++) {
                         Node node = nodeList.item(i);
@@ -254,6 +247,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
+                connection.disconnect();
             } catch (XmlPullParserException | IOException | ParserConfigurationException | SAXException e) {
                 e.printStackTrace();
             }
