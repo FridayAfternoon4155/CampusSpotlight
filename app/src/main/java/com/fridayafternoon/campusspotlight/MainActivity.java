@@ -218,15 +218,17 @@ public class MainActivity extends AppCompatActivity {
                             eventDatetime = getValue("event-datetime", item);
                             location = getValue("location", item);
                             eventType = getValue("event-type", item);
-                            organization = getValue("organization", item);
+                            //organization = getValue("organization", item);
                             path = getValue("path", item);
+
+                            Log.i("eventsDebug", "doInBackground: Events:" + " " + count + " " +  title + " " + eventDatetime + " " + location + " " + eventType + " " + organization + " " + path);
 
                             event.put("count", count);
                             event.put("title", title);
                             event.put("eventDatetime", eventDatetime);
                             event.put("location", location);
                             event.put("eventType", eventType);
-                            event.put("organization", organization);
+                           // event.put("organization", organization);
                             event.put("path", path);
 
                             db.collection("events")
@@ -235,13 +237,13 @@ public class MainActivity extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                            Log.i("info", "onSuccess: Event Added. ");
+                                            Log.i("addToFirebase", "onSuccess: Event Added. ");
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            Log.i("info", "onFailure: Failed to add event.");
+                                            Log.i("addToFirebase", "onFailure: Failed to add event.");
                                         }
                                     });
                         }
