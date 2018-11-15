@@ -216,11 +216,11 @@ public class MainActivity extends AppCompatActivity {
                            try {
                             if (getValue("count", item) != null
                                 & getValue("title", item) != null
-                                    & getValue("event-datetime", item) != null
-                                    & getValue("location", item) != null
-                                    & getValue("event-type", item) != null
-                                    & getValue("organization", item) != null
-                                    & getValue("path", item) != null) {
+                                & getValue("event-datetime", item) != null
+                                & getValue("location", item) != null
+                                & getValue("event-type", item) != null
+                                & getValue("organization", item) != null
+                                & getValue("path", item) != null) {
 
                                 count = getValue("count", item);
                                 title = getValue("title", item);
