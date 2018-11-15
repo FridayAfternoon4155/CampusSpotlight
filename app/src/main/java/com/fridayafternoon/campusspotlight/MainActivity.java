@@ -28,6 +28,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -212,40 +213,55 @@ public class MainActivity extends AppCompatActivity {
                         Map<String, Object> event = new HashMap<>();
                         if (node.getNodeType() == Node.ELEMENT_NODE) {
                             Element item = (Element) node;
+                           try {
+                            if (getValue("count", item) != null
+                                & getValue("title", item) != null
+                                    & getValue("event-datetime", item) != null
+                                    & getValue("location", item) != null
+                                    & getValue("event-type", item) != null
+                                    & getValue("organization", item) != null
+                                    & getValue("path", item) != null) {
 
-                            count = getValue("count", item);
-                            title = getValue("title", item);
-                            eventDatetime = getValue("event-datetime", item);
-                            location = getValue("location", item);
-                            eventType = getValue("event-type", item);
-                            //organization = getValue("organization", item);
-                            path = getValue("path", item);
+                                count = getValue("count", item);
+                                title = getValue("title", item);
+                                eventDatetime = getValue("event-datetime", item);
+                                location = getValue("location", item);
+                                eventType = getValue("event-type", item);
+                                organization = getValue("organization", item);
+                                path = getValue("path", item);
 
-                            Log.i("eventsDebug", "doInBackground: Events:" + " " + count + " " +  title + " " + eventDatetime + " " + location + " " + eventType + " " + organization + " " + path);
+                                Log.i("eventsDebug", "doInBackground: Events:" + " "
+                                        + count + " " + title + " " + eventDatetime + " "
+                                        + location + " " + eventType + " " + organization + " "
+                                        + path);
 
-                            event.put("count", count);
-                            event.put("title", title);
-                            event.put("eventDatetime", eventDatetime);
-                            event.put("location", location);
-                            event.put("eventType", eventType);
-                           // event.put("organization", organization);
-                            event.put("path", path);
+                                event.put("count", count);
+                                event.put("title", title);
+                                event.put("eventDatetime", eventDatetime);
+                                event.put("location", location);
+                                event.put("eventType", eventType);
+                                event.put("organization", organization);
+                                event.put("path", path);
 
-                            db.collection("events")
-                                    .document("event")
-                                    .set(event)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            Log.i("addToFirebase", "onSuccess: Event Added. ");
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Log.i("addToFirebase", "onFailure: Failed to add event.");
-                                        }
-                                    });
+
+                                db.collection("events")
+                                        .add(event).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                    @Override
+                                    public void onSuccess(DocumentReference documentReference) {
+                                        Log.d("databaseDebug", "onSuccess: Event added to database");
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.d("databaseDebug", "onFailure: Event not added to db. ");
+                                    }
+                                });
+                            } else {
+                                Log.d("XMLDebug", "doInBackground: The parse of the XML failed. ");
+                            }
+                           } catch (Exception e) {
+                                e.printStackTrace();
+                           }
                         }
                     }
                 }
