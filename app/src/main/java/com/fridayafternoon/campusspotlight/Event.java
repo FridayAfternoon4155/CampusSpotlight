@@ -1,7 +1,7 @@
 package com.fridayafternoon.campusspotlight;
 
 public class Event {
-    public String name, date, location, time, description, tags, link;
+    public String count, name, date, location, time, description, tags, link, title, type, organization;
 
 
     public String getLink() {
@@ -23,6 +23,38 @@ public class Event {
         this.description = description;
         this.tags = tags;
         this.link = link;
+    }
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
     }
 
     public String getName() {
@@ -73,5 +105,20 @@ public class Event {
         this.tags = tags;
     }
 
-
+    @Override
+    public String toString() {
+        return "Event{" +
+                "count='" + count + '\'' +
+                ", name='" + name + '\'' +
+                ", date='" + date + '\'' +
+                ", location='" + location + '\'' +
+                ", time='" + time + '\'' +
+                ", description='" + description + '\'' +
+                ", tags='" + tags + '\'' +
+                ", link='" + link + '\'' +
+                ", title='" + title + '\'' +
+                ", type='" + type + '\'' +
+                ", organization='" + organization + '\'' +
+                '}';
+    }
 }

@@ -1,9 +1,12 @@
 package com.fridayafternoon.campusspotlight;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,20 +18,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
-import com.gargoylesoftware.htmlunit.html.HtmlElement;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -45,11 +39,8 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -64,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
     FirebaseStorage mStorage;
     StorageReference storageReference;
     String usersName;
+
+    ArrayList<Event> events = new ArrayList<>();
+    EventAdapter adapter;
 
 
 
@@ -90,6 +84,15 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private boolean isConnected() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return networkInfo != null && networkInfo.isConnected() &&
+                (networkInfo.getType() == ConnectivityManager.TYPE_WIFI
+                        || networkInfo.getType() == ConnectivityManager.TYPE_MOBILE);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
         if (mAuth.getCurrentUser() != null) {
             usersName = mAuth.getCurrentUser().getDisplayName();
         }
+
+
+        adapter = new EventAdapter(MainActivity.this, events);
 
 
 
@@ -210,59 +216,52 @@ public class MainActivity extends AppCompatActivity {
 
                     for (int i = 0; i < nodeList.getLength(); i++) {
                         Node node = nodeList.item(i);
-                        Map<String, Object> event = new HashMap<>();
+                        //Map<String, Object> event = new HashMap<>();
+                        Event event = new Event();
                         if (node.getNodeType() == Node.ELEMENT_NODE) {
                             Element item = (Element) node;
-                           try {
-                            if (getValue("count", item) != null
-                                & getValue("title", item) != null
-                                & getValue("event-datetime", item) != null
-                                & getValue("location", item) != null
-                                & getValue("event-type", item) != null
-                                & getValue("organization", item) != null
-                                & getValue("path", item) != null) {
+                            try {
+                                if (getValue("count", item) != null
+                                        & getValue("title", item) != null
+                                        & getValue("event-datetime", item) != null
+                                        & getValue("location", item) != null
+                                        & getValue("event-type", item) != null
+                                        & getValue("organization", item) != null
+                                        & getValue("path", item) != null) {
 
-                                count = getValue("count", item);
-                                title = getValue("title", item);
-                                eventDatetime = getValue("event-datetime", item);
-                                location = getValue("location", item);
-                                eventType = getValue("event-type", item);
-                                organization = getValue("organization", item);
-                                path = getValue("path", item);
+                                    count = getValue("count", item);
+                                    title = getValue("title", item);
+                                    eventDatetime = getValue("event-datetime", item);
+                                    location = getValue("location", item);
+                                    eventType = getValue("event-type", item);
+                                    organization = getValue("organization", item);
+                                    path = getValue("path", item);
 
-                                Log.i("eventsDebug", "doInBackground: Events:" + " "
-                                        + count + " " + title + " " + eventDatetime + " "
-                                        + location + " " + eventType + " " + organization + " "
-                                        + path);
+                                    Log.i("eventsDebug", "doInBackground: Events:" + " "
+                                            + count + " " + title + " " + eventDatetime + " "
+                                            + location + " " + eventType + " " + organization + " "
+                                            + path);
 
-                                event.put("count", count);
-                                event.put("title", title);
-                                event.put("eventDatetime", eventDatetime);
-                                event.put("location", location);
-                                event.put("eventType", eventType);
-                                event.put("organization", organization);
-                                event.put("path", path);
+                                    event.setCount(count);
+                                    event.setTitle(title);
+                                    event.setDate(eventDatetime);
+                                    event.setLocation(location);
+                                    event.setType(eventType);
+                                    event.setOrganization(organization);
+                                    event.setLink(path);
 
+                                    Log.i("eventToString", "doInBackground: Event.toString()" + event.toString());
 
-                                db.collection("events")
-                                        .add(event).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                    @Override
-                                    public void onSuccess(DocumentReference documentReference) {
-                                        Log.d("databaseDebug", "onSuccess: Event added to database");
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.d("databaseDebug", "onFailure: Event not added to db. ");
-                                    }
-                                });
-                            } else {
-                                Log.d("XMLDebug", "doInBackground: The parse of the XML failed. ");
-                            }
-                           } catch (Exception e) {
+                                    events.add(event);
+
+                                } else {
+                                    Log.d("XMLDebug", "doInBackground: The parse of the XML failed. ");
+                                }
+                            } catch (Exception e) {
                                 e.printStackTrace();
-                           }
+                            }
                         }
+
                     }
                 }
                 connection.disconnect();
@@ -288,6 +287,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+
         }
 
         @Override
