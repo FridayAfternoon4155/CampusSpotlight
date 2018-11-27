@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        adapter = new HomeAdapter(MainActivity.this, events);
+
 
 
 

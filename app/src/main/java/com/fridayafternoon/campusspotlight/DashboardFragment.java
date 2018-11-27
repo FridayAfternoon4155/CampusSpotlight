@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import com.fridayafternoon.campusspotlight.dummy.DummyContent;
 import com.fridayafternoon.campusspotlight.dummy.DummyContent.DummyItem;
 
+import java.util.ArrayList;
+
 /**
  * A fragment representing a list of Items.
  * <p/>
@@ -26,6 +28,7 @@ public class DashboardFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+    ArrayList<Event> events = new ArrayList<>();
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -56,7 +59,7 @@ public class DashboardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_event_list2, container, false);
+        View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -67,7 +70,7 @@ public class DashboardFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new DashboardAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new DashboardAdapter(events, mListener));
         }
         return view;
     }
@@ -102,6 +105,6 @@ public class DashboardFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(Event event);
     }
 }

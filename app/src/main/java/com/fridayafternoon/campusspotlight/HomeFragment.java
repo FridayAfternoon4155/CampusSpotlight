@@ -1,5 +1,6 @@
 package com.fridayafternoon.campusspotlight;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fridayafternoon.campusspotlight.dummy.DummyContent.DummyItem;
+
+import java.util.ArrayList;
 
 /**
  * A fragment representing a list of Items.
@@ -25,6 +28,9 @@ public class HomeFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+    ArrayList<Event> events = new ArrayList<>();
+    Activity context = getActivity();
+
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -55,7 +61,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_event_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -66,7 +72,7 @@ public class HomeFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            //recyclerView.setAdapter(new HomeAdapter(Event.ITEMS, mListener));
+            recyclerView.setAdapter(new HomeAdapter(events, mListener));
         }
         return view;
     }
@@ -101,6 +107,6 @@ public class HomeFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(Event event);
     }
 }

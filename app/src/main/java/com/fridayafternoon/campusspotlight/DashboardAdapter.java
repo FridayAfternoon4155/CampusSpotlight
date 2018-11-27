@@ -18,26 +18,26 @@ import java.util.List;
  */
 public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<Event> events;
     private final OnListFragmentInteractionListener mListener;
 
-    public DashboardAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
-        mValues = items;
+    public DashboardAdapter(List<Event> items, OnListFragmentInteractionListener listener) {
+        events = items;
         mListener = listener;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_event2, parent, false);
+                .inflate(R.layout.fragment_dashboard, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.event = events.get(position);
+//        holder.mIdView.setText(events.get(position).id);
+//        holder.mContentView.setText(events.get(position).content);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +45,7 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.View
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onListFragmentInteraction(holder.event);
                 }
             }
         });
@@ -53,25 +53,26 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.View
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return events.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public DummyItem mItem;
+        public View mView;
+        public Event event;
+        public TextView eventTitle;
+        public TextView eventLocation;
+        public TextView date_time;
+
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = view.findViewById(R.id.item_number);
-            mContentView = view.findViewById(R.id.content);
+            eventTitle = view.findViewById(R.id.eventTitle);
+            eventLocation = view.findViewById(R.id.eventLocation);
+            date_time = view.findViewById(R.id.date_time);
+
         }
 
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
+
     }
 }
