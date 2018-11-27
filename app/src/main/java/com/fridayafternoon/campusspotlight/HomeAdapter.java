@@ -7,24 +7,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.fridayafternoon.campusspotlight.EventHomeFragment.OnListFragmentInteractionListener;
+import com.fridayafternoon.campusspotlight.HomeFragment.OnListFragmentInteractionListener;
 import com.fridayafternoon.campusspotlight.dummy.DummyContent.DummyItem;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     Activity aContext;
 //    private final OnListFragmentInteractionListener mListener;
     ArrayList<Event> events = new ArrayList<>();
 
 
-    public EventAdapter(Activity context, ArrayList<Event> items) {
+    public HomeAdapter(Activity context, ArrayList<Event> items) {
         aContext = context;
         events = items;
     }

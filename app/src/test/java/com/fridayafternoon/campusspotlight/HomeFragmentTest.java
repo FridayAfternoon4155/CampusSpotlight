@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class EventHomeFragmentTest {
+public class HomeFragmentTest {
 
     @Before
     public void setUp() {

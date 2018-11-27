@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.fridayafternoon.campusspotlight.EventFragment.OnListFragmentInteractionListener;
+import com.fridayafternoon.campusspotlight.DashboardFragment.OnListFragmentInteractionListener;
 import com.fridayafternoon.campusspotlight.dummy.DummyContent.DummyItem;
 
 import java.util.List;
@@ -16,12 +16,12 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyEventRecyclerViewAdapter2 extends RecyclerView.Adapter<MyEventRecyclerViewAdapter2.ViewHolder> {
+public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyEventRecyclerViewAdapter2(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public DashboardAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }

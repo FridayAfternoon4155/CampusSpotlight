@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.fridayafternoon.campusspotlight.dummy.DummyContent;
 import com.fridayafternoon.campusspotlight.dummy.DummyContent.DummyItem;
 
 /**
@@ -19,7 +18,7 @@ import com.fridayafternoon.campusspotlight.dummy.DummyContent.DummyItem;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class EventHomeFragment extends Fragment {
+public class HomeFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -31,13 +30,13 @@ public class EventHomeFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public EventHomeFragment() {
+    public HomeFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static EventHomeFragment newInstance(int columnCount) {
-        EventHomeFragment fragment = new EventHomeFragment();
+    public static HomeFragment newInstance(int columnCount) {
+        HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -67,7 +66,7 @@ public class EventHomeFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new EventAdapter(DummyContent.ITEMS, mListener));
+            //recyclerView.setAdapter(new HomeAdapter(Event.ITEMS, mListener));
         }
         return view;
     }

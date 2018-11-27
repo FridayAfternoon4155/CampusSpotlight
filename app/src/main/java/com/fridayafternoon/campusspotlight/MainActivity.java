@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     String usersName;
 
     ArrayList<Event> events = new ArrayList<>();
-    EventAdapter adapter;
+    HomeAdapter adapter;
 
 
 
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        adapter = new EventAdapter(MainActivity.this, events);
+        adapter = new HomeAdapter(MainActivity.this, events);
 
 
 
