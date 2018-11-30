@@ -10,8 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.fridayafternoon.campusspotlight.dummy.DummyContent;
-import com.fridayafternoon.campusspotlight.dummy.DummyContent.DummyItem;
 
 import java.util.ArrayList;
 
@@ -23,9 +21,7 @@ import java.util.ArrayList;
  */
 public class DashboardFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     ArrayList<Event> events = new ArrayList<>();
@@ -37,8 +33,6 @@ public class DashboardFragment extends Fragment {
     public DashboardFragment() {
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
     public static DashboardFragment newInstance(int columnCount) {
         DashboardFragment fragment = new DashboardFragment();
         Bundle args = new Bundle();
@@ -104,7 +98,6 @@ public class DashboardFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(Event event);
     }
 }

@@ -8,14 +8,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.fridayafternoon.campusspotlight.HomeFragment.OnListFragmentInteractionListener;
-import com.fridayafternoon.campusspotlight.dummy.DummyContent.DummyItem;
 
 import java.util.ArrayList;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link Event} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
  */
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     Activity aContext;
@@ -38,6 +36,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.event = events.get(position);
+        //TODO Implement the proper view content
 //        holder.mIdView.setText(events.get(position).id);
 //        holder.mContentView.setText(events.get(position).content);
 
