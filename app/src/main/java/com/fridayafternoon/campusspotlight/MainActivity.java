@@ -46,7 +46,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnListFragmentInteractionListener{
 
     private TextView mTextMessage;
     DialogInterface.OnClickListener dialogClickListener;
@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Event> events = new ArrayList<>();
     HomeAdapter adapter;
+
 
 
 
@@ -98,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getFragmentManager().beginTransaction()
+                .add(R.id.container, new HomeFragment(), "tag_HomeFragment")
+                .commit();
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mStorage = FirebaseStorage.getInstance();
