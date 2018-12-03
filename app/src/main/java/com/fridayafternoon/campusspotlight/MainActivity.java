@@ -1,6 +1,8 @@
 package com.fridayafternoon.campusspotlight;
 
 import android.app.AlertDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -59,6 +61,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     ArrayList<Event> events = new ArrayList<>();
     HomeAdapter adapter;
 
+    FragmentManager fragmentManager = getFragmentManager();
+    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+    HomeFragment homeFragment = new HomeFragment();
 
 
 
@@ -99,9 +105,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getFragmentManager().beginTransaction()
-                .add(R.id.container, new HomeFragment(), "tag_HomeFragment")
+        fragmentTransaction
+                .replace(R.id.container, homeFragment, "tag_HomeFragment")
                 .commit();
+
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mStorage = FirebaseStorage.getInstance();
@@ -109,11 +116,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
         if (mAuth.getCurrentUser() != null) {
             usersName = mAuth.getCurrentUser().getDisplayName();
         }
-
-
-
-
-
 
         dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
@@ -176,6 +178,11 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
             return false;
         }
         return false;
+    }
+
+    @Override
+    public void onListFragmentInteraction(Event event) {
+
     }
 
 

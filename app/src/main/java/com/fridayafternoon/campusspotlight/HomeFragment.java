@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import java.util.ArrayList;
 
 /**
@@ -27,6 +26,8 @@ public class HomeFragment extends Fragment {
     private OnListFragmentInteractionListener mListener;
     ArrayList<Event> events = new ArrayList<>();
     Activity context = getActivity();
+    android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
+    android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
 
     /**
