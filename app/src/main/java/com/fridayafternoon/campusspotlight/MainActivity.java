@@ -49,7 +49,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-public class MainActivity extends AppCompatActivity implements HomeFragment.OnListFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
     DialogInterface.OnClickListener dialogClickListener;
@@ -181,11 +181,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
             return false;
         }
         return false;
-    }
-
-    @Override
-    public void onListFragmentInteraction(Event event) {
-
     }
 
 
