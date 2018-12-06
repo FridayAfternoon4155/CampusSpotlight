@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -50,7 +52,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-public class MainActivity extends AppCompatActivity implements HomeFragment.OnListFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnListFragmentInteractionListener,
+        DashboardFragment.OnListFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener {
 
     private TextView mTextMessage;
     DialogInterface.OnClickListener dialogClickListener;
@@ -63,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     ArrayList<Event> events = new ArrayList<>();
     HomeAdapter adapter;
     Fragment homeFragment = new HomeFragment();
+    Fragment dashboardFragment = new DashboardFragment();
+    Fragment profileFragment = new ProfileFragment();
     FragmentManager fragmentManager = getFragmentManager();
     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
@@ -86,9 +91,15 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
                     return true;
                 case R.id.navigation_dashboard:
                     Toast.makeText(MainActivity.this, "Dashboard Clicked", Toast.LENGTH_SHORT).show();
+                    fragmentTransaction
+                            .replace(R.id.fragment, dashboardFragment, "tag_HomeFragment")
+                            .commit();
                     return true;
                 case R.id.navigation_profile:
                     Toast.makeText(MainActivity.this, "Profile Clicked", Toast.LENGTH_SHORT).show();
+                    fragmentTransaction
+                            .replace(R.id.fragment, profileFragment, "tag_HomeFragment")
+                            .commit();
                     return true;
             }
             return false;
@@ -168,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.logoutButton) {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setMessage("Are you sure?")
+            builder.setTitle(Html.fromHtml("<font color='#000000'>Are you sure?</font>"))
                     .setPositiveButton("Yes", dialogClickListener)
                     .setNegativeButton("No", dialogClickListener).show();
             return true;
@@ -185,6 +196,11 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
 
     @Override
     public void onListFragmentInteraction(Event event) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 

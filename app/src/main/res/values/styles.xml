@@ -14,13 +14,16 @@
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:textColorPrimaryInverse">@android:color/black</item>
         <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:actionMenuTextColor">@android:color/black</item>
         <!--<item name="buttonStyle">#00703C</item>-->
         <item name="colorAccent">#ffb5a560</item>
     </style>
 
+    <style name="Theme.AppCompat.AppBarOverlay.DarkActionBar">
+        <item name="actionMenuTextColor">@android:color/black</item>
+    </style>
 
-
-
+    <style name="Theme.AppCompat.AppBarOverlay">ThemeAppCompat.AppBarOverlay.DarkActionBar</style>
 
 
 </resources>
