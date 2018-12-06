@@ -62,9 +62,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     FirebaseStorage mStorage;
     StorageReference storageReference;
     String usersName;
-
     ArrayList<Event> events = new ArrayList<>();
-    HomeAdapter adapter;
     Fragment homeFragment = new HomeFragment();
     Fragment dashboardFragment = new DashboardFragment();
     Fragment profileFragment = new ProfileFragment();
@@ -294,6 +292,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
             } catch (XmlPullParserException | IOException | ParserConfigurationException | SAXException e) {
                 e.printStackTrace();
             }
+            Bundle bundle = new Bundle();
+            bundle.putParcelableArrayList("events", events);
+            homeFragment.setArguments(bundle);
+
             return null;
         }
 
@@ -306,7 +308,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //TODO Check if there are new events to add to the database. If there are add them. If not, you know what to do.
+            //TODO Check if there are new events to add to the database. If there are add them. If not, do nothing.
 
         }
 

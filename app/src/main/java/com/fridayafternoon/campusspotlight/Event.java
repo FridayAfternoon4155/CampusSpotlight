@@ -1,8 +1,39 @@
 package com.fridayafternoon.campusspotlight;
 
-public class Event {
+import android.annotation.SuppressLint;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+@SuppressLint("ParcelCreator")
+public class Event implements Parcelable {
     public String count, name, date, location, time, description, tags, link, title, type, organization;
 
+
+    protected Event(Parcel in) {
+        count = in.readString();
+        name = in.readString();
+        date = in.readString();
+        location = in.readString();
+        time = in.readString();
+        description = in.readString();
+        tags = in.readString();
+        link = in.readString();
+        title = in.readString();
+        type = in.readString();
+        organization = in.readString();
+    }
+
+    public static final Creator<Event> CREATOR = new Creator<Event>() {
+        @Override
+        public Event createFromParcel(Parcel in) {
+            return new Event(in);
+        }
+
+        @Override
+        public Event[] newArray(int size) {
+            return new Event[size];
+        }
+    };
 
     public String getLink() {
         return link;
@@ -120,5 +151,25 @@ public class Event {
                 ", type='" + type + '\'' +
                 ", organization='" + organization + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(count);
+        dest.writeString(name);
+        dest.writeString(date);
+        dest.writeString(location);
+        dest.writeString(time);
+        dest.writeString(description);
+        dest.writeString(tags);
+        dest.writeString(link);
+        dest.writeString(title);
+        dest.writeString(type);
+        dest.writeString(organization);
     }
 }

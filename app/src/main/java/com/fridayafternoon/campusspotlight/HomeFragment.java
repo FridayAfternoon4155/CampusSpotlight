@@ -50,6 +50,10 @@ public class HomeFragment extends android.app.Fragment {
 
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+            events = getArguments().getParcelableArrayList("events");
+            Log.i("info", "onCreate: array size" + events.size());
+        } else {
+
         }
 
 
