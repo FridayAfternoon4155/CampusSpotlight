@@ -1,8 +1,6 @@
 package com.fridayafternoon.campusspotlight;
 
 import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -27,8 +25,6 @@ public class HomeFragment extends android.app.Fragment {
     private OnListFragmentInteractionListener mListener;
     ArrayList<Event> events = new ArrayList<>();
     Activity context = getActivity();
-    FragmentManager fragmentManager = getFragmentManager();
-    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
 
     /**

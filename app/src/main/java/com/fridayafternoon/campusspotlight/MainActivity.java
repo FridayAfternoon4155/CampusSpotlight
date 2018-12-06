@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //TODO fix error here.
+
         fragmentTransaction
                 .replace(R.id.fragment, homeFragment, "tag_HomeFragment")
                 .commit();
