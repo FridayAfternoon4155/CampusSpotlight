@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     Fragment profileFragment = new ProfileFragment();
     FragmentManager fragmentManager = getFragmentManager();
     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    Fragment selectedFragment;
 
 
 
@@ -82,26 +83,24 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-
+                    Toast.makeText(MainActivity.this, "Home Clicked", Toast.LENGTH_SHORT).show();
                         new GetXMLAsync().execute();
-
-                    fragmentTransaction
-                            .replace(R.id.fragment, homeFragment, "tag_HomeFragment")
-                            .commit();
+                    selectedFragment = homeFragment;
                     return true;
                 case R.id.navigation_dashboard:
                     Toast.makeText(MainActivity.this, "Dashboard Clicked", Toast.LENGTH_SHORT).show();
-                    fragmentTransaction
-                            .replace(R.id.fragment, dashboardFragment, "tag_HomeFragment")
-                            .commit();
+                    selectedFragment = dashboardFragment;
                     return true;
                 case R.id.navigation_profile:
                     Toast.makeText(MainActivity.this, "Profile Clicked", Toast.LENGTH_SHORT).show();
-                    fragmentTransaction
-                            .replace(R.id.fragment, profileFragment, "tag_HomeFragment")
-                            .commit();
+                    selectedFragment = profileFragment;
                     return true;
             }
+
+            fragmentTransaction.replace(R.id.fragment, selectedFragment)
+            .addToBackStack(null)
+            .commit();
+
             return false;
         }
     };
@@ -119,9 +118,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();

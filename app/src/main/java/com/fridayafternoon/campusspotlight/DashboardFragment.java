@@ -1,13 +1,14 @@
 package com.fridayafternoon.campusspotlight;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,9 @@ public class DashboardFragment extends android.app.Fragment {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     ArrayList<Event> events = new ArrayList<>();
+    Activity context = getActivity();
+    DashboardAdapter adapter;
+    ListView eventList;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -53,17 +57,20 @@ public class DashboardFragment extends android.app.Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+        adapter = new DashboardAdapter(getContext(), R.layout.activity_main, events, mListener);
+        Log.i("info", "//=== VIEW IS NULL: " + Boolean.toString(view==null));
+        eventList = view.findViewById(R.id.listViewDashboard);
+        Log.i("info", "//=== EVENTLIST IS NULL: " + Boolean.toString(eventList==null));
+        Log.i("info", "//=== ADAPTER IS NULL: " + Boolean.toString(adapter==null));
+        eventList.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+        eventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //TODO Put the stuff for the link to the things here
             }
-            recyclerView.setAdapter(new DashboardAdapter(events, mListener));
-        }
+        });
         return view;
     }
 
