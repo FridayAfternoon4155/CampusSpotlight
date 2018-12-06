@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -49,7 +50,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnListFragmentInteractionListener {
 
     private TextView mTextMessage;
     DialogInterface.OnClickListener dialogClickListener;
@@ -76,16 +77,18 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    //mTextMessage.setText(R.string.title_home);
 
                         new GetXMLAsync().execute();
 
+                    fragmentTransaction
+                            .replace(R.id.fragment, homeFragment, "tag_HomeFragment")
+                            .commit();
                     return true;
                 case R.id.navigation_dashboard:
-                    //mTextMessage.setText(R.string.title_dashboard);
+                    Toast.makeText(MainActivity.this, "Dashboard Clicked", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.navigation_profile:
-                    //mTextMessage.setText(R.string.title_notifications);
+                    Toast.makeText(MainActivity.this, "Profile Clicked", Toast.LENGTH_SHORT).show();
                     return true;
             }
             return false;
@@ -106,9 +109,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fragmentTransaction
-                .replace(R.id.fragment, homeFragment, "tag_HomeFragment")
-                .commit();
 
 
 
@@ -181,6 +181,11 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         return false;
+    }
+
+    @Override
+    public void onListFragmentInteraction(Event event) {
+
     }
 
 

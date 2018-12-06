@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="170dp"
-    android:background="#00703C"
-    >
+    android:background="#00703C">
 
     <TextView
         android:id="@+id/date_time"
@@ -38,7 +36,8 @@
         android:id="@+id/GoingButton"
         android:layout_width="47dp"
         android:layout_height="46dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="16dp"
         android:background="#00703C"
         android:contentDescription="@string/bookmark_going"
         android:scaleType="fitXY"
@@ -59,19 +58,6 @@
         app:layout_constraintEnd_toStartOf="@+id/GoingButton"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/cost"
-        android:layout_width="42dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/cost"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_light_background"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/GoingButton" />
-
     <ImageView
         android:id="@+id/calendarPic"
         android:layout_width="wrap_content"
@@ -82,15 +68,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_my_calendar" />
-
-    <ImageView
-        android:id="@+id/dollarSign"
-        android:layout_width="21dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="140dp"
-        android:contentDescription="@string/dollarSign"
-        app:layout_constraintEnd_toStartOf="@+id/cost"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/dollar_sign" />
 
 </android.support.constraint.ConstraintLayout>
