@@ -117,6 +117,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        new GetXMLAsync().execute();
+
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mStorage = FirebaseStorage.getInstance();
