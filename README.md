@@ -17,7 +17,7 @@ It uses FireBase as the backend for pulling and storing events.
 3. Profile Editing
 
 
-## Future Features
+### Future Features
 1. Suporrt iOS
 2. Event Sharing
 3. Push Notifications
