@@ -1,6 +1,7 @@
 package com.fridayafternoon.campusspotlight;
 
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -60,11 +61,11 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
 
     ArrayList<Event> events = new ArrayList<>();
     HomeAdapter adapter;
-
+    Fragment homeFragment = new HomeFragment();
     FragmentManager fragmentManager = getFragmentManager();
     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-    HomeFragment homeFragment = new HomeFragment();
+
 
 
 
@@ -106,8 +107,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
         setContentView(R.layout.activity_main);
         //TODO fix error here.
         fragmentTransaction
-                .replace(R.id.container, homeFragment, "tag_HomeFragment")
+                .replace(R.id.fragment, homeFragment, "tag_HomeFragment")
                 .commit();
+
+
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();

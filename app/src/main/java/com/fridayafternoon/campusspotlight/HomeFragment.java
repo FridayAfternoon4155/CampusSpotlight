@@ -1,9 +1,10 @@
 package com.fridayafternoon.campusspotlight;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,15 +20,15 @@ import java.util.ArrayList;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends android.app.Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     ArrayList<Event> events = new ArrayList<>();
     Activity context = getActivity();
-    android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
-    android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    FragmentManager fragmentManager = getFragmentManager();
+    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
 
     /**
