@@ -1,6 +1,8 @@
 package com.fridayafternoon.campusspotlight;
 
 import android.app.AlertDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -46,7 +48,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnListFragmentInteractionListener{
 
     private TextView mTextMessage;
     DialogInterface.OnClickListener dialogClickListener;
@@ -58,6 +60,11 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Event> events = new ArrayList<>();
     HomeAdapter adapter;
+
+    FragmentManager fragmentManager = getFragmentManager();
+    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+    HomeFragment homeFragment = new HomeFragment();
 
 
 
@@ -97,6 +104,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //TODO fix error here.
+        fragmentTransaction
+                .replace(R.id.container, homeFragment, "tag_HomeFragment")
+                .commit();
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -105,11 +116,6 @@ public class MainActivity extends AppCompatActivity {
         if (mAuth.getCurrentUser() != null) {
             usersName = mAuth.getCurrentUser().getDisplayName();
         }
-
-
-
-
-
 
         dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
@@ -172,6 +178,11 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         return false;
+    }
+
+    @Override
+    public void onListFragmentInteraction(Event event) {
+
     }
 
 
