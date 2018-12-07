@@ -5,14 +5,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.text.IDNA;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -43,6 +46,13 @@ public class ProfileFragment extends android.app.Fragment implements View.OnClic
 
     private String displayName;
     private String email;
+
+//    private String profileName;
+//    private String profileEmail;
+    TextView profileName;
+//    TextView profileEmail;
+
+    //Button editButton
 
     private OnFragmentInteractionListener mListener;
 
@@ -92,6 +102,14 @@ public class ProfileFragment extends android.app.Fragment implements View.OnClic
         final View view = inflater.inflate(R.layout.fragment_profile, container, false);
         Button signOutButton = view.findViewById(R.id.signOutButton);
         signOutButton.setOnClickListener(this);
+
+        profileName = view.findViewById(R.id.profileName);
+        profileName.setText(displayName);
+        Log.i("info", "onCreateView: " + displayName);
+
+        TextView profileEmail = view.findViewById(R.id.profileEmail);
+        profileEmail.setText(email);
+        Log.i("info", "onCreateView: " + email);
 
         // Inflate the layout for this fragment
         return view;
