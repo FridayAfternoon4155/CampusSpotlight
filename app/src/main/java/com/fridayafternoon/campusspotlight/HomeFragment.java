@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -75,16 +74,16 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
         eventList = view.findViewById(R.id.listViewHome);
         eventList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-
         eventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.i(TAG, "onItemClick: reached 82");
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(events.get(position).getLink()));
                 Log.i(TAG, "onItemClick: event position link" + events.get(position).getLink());
                 startActivity(browserIntent);
             }
         });
-
+        Log.i(TAG, "onCreateView: Reached line 87");
         ImageButton pinButton = eventItem.findViewById(R.id.GoingButton);
         pinButton.setOnClickListener(this);
 
@@ -103,6 +102,8 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
         }
 
 
+
+
     }
 
     @Override
@@ -115,7 +116,7 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.GoingButton:
-                Toast.makeText(context, "Clicked Going Button", Toast.LENGTH_SHORT).show();
+                Log.i(TAG, "onClick: reached onclick for gobutton");
         }
 
 
