@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -65,13 +67,16 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         adapter = new HomeAdapter(getContext(), R.layout.activity_main, events, mListener);
         Log.i("info", "//=== VIEW IS NULL: " + Boolean.toString(view==null));
         eventList = view.findViewById(R.id.listViewHome);
         eventList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+        ImageView pinButton = view.findViewById(R.id.GoingButton);
+        pinButton.setOnClickListener(this);
 
         eventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -81,6 +86,8 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
                 startActivity(browserIntent);
             }
         });
+
+
         return view;
     }
 
@@ -104,6 +111,11 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.GoingButton:
+                Toast.makeText(context, "Clicked Going Button", Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 
