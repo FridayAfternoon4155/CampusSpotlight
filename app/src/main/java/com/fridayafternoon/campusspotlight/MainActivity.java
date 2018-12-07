@@ -54,7 +54,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnListFragmentInteractionListener,
         DashboardFragment.OnListFragmentInteractionListener, ProfileFragment.OnFragmentInteractionListener {
-
+    String TAG = "info";
     private TextView mTextMessage;
     DialogInterface.OnClickListener dialogClickListener;
     FirebaseAuth mAuth;
@@ -63,15 +63,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     StorageReference storageReference;
     String usersName;
     ArrayList<Event> events = new ArrayList<>();
-    Fragment homeFragment = new HomeFragment();
-    Fragment dashboardFragment = new DashboardFragment();
-    Fragment profileFragment = new ProfileFragment();
     FragmentManager fragmentManager = getFragmentManager();
-    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-    Fragment selectedFragment;
-
-
-
+    Fragment homeFragment = new HomeFragment();
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -79,26 +72,33 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selectedFragment = null;
+
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     Toast.makeText(MainActivity.this, "Home Clicked", Toast.LENGTH_SHORT).show();
                         new GetXMLAsync().execute();
-                    selectedFragment = homeFragment;
-                    return true;
+                    selectedFragment = new HomeFragment();
+                    homeFragment = selectedFragment;
+                    Log.i(TAG, "onNavigationItemSelected: SelectedFragment: " + selectedFragment.toString());
+                    break;
                 case R.id.navigation_dashboard:
                     Toast.makeText(MainActivity.this, "Dashboard Clicked", Toast.LENGTH_SHORT).show();
-                    selectedFragment = dashboardFragment;
-                    return true;
+                    selectedFragment = new DashboardFragment();
+                    Log.i(TAG, "onNavigationItemSelected: SelectedFragment: " + selectedFragment.toString());
+                    break;
                 case R.id.navigation_profile:
                     Toast.makeText(MainActivity.this, "Profile Clicked", Toast.LENGTH_SHORT).show();
-                    selectedFragment = profileFragment;
-                    return true;
+                    selectedFragment = new ProfileFragment();
+                    Log.i(TAG, "onNavigationItemSelected: SelectedFragment: " + selectedFragment.toString());
+                    break;
             }
 
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragment, selectedFragment)
             .addToBackStack(null)
             .commit();
-
+            Log.i(TAG, "onNavigationItemSelected: passed fragment commit.");
             return false;
         }
     };

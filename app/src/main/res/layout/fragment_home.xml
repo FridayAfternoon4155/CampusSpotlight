@@ -10,5 +10,13 @@
     <ListView
         android:id="@+id/listViewHome"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="434dp"
+        android:layout_height="278dp"
+        android:text="HELLO WORLD"
+        android:textSize="36sp" />
 </FrameLayout>

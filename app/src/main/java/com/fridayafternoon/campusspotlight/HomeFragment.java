@@ -56,8 +56,6 @@ public class HomeFragment extends android.app.Fragment {
 
         }
 
-
-
     }
 
     @Override

@@ -18,14 +18,12 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends android.app.Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String displayName;
+    private String email;
 
     private OnFragmentInteractionListener mListener;
 
@@ -37,16 +35,15 @@ public class ProfileFragment extends android.app.Fragment {
      * Use this factory method to create a new instance of a
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param displayName Parameter 1.
+     * @param email Parameter 2.
      * @return A new instance of fragment ProfileFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
+    public static ProfileFragment newInstance(String displayName, String email) {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM1, displayName);
+        args.putString(ARG_PARAM2, email);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,8 +52,8 @@ public class ProfileFragment extends android.app.Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            displayName = getArguments().getString(ARG_PARAM1);
+            email = getArguments().getString(ARG_PARAM2);
         }
     }
 
