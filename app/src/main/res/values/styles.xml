@@ -2,13 +2,13 @@
 
     <!-- Base application theme. -->
     <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
-        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
-        <!--<item name="colorPrimary">#00703C</item>-->
-        <!--<item name="colorPrimaryDark">@color/primary_material_light_1</item>-->
-        <!--<item name="colorAccent">#ffb5a560</item>-->
+    <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+    <!--<item name="colorPrimary">#00703C</item>-->
+    <!--<item name="colorPrimaryDark">@color/primary_material_light_1</item>-->
+    <!--<item name="colorAccent">#ffb5a560</item>-->
     <!--</style>-->
 
-    <style name="UNCC" parent="Theme.AppCompat.Light.DarkActionBar" >
+    <style name="UNCC" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">#00703C</item>
         <item name="colorPrimaryDark">@color/primary_material_light_1</item>
         <item name="android:textColorPrimary">@android:color/white</item>
@@ -24,6 +24,15 @@
     </style>
 
     <style name="Theme.AppCompat.AppBarOverlay">ThemeAppCompat.AppBarOverlay.DarkActionBar</style>
+
+    <style name="UNCC.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="UNCC.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="UNCC.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
 </resources>

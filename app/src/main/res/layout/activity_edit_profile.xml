@@ -2,16 +2,19 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
+    tools:context=".EditProfile">
+
+
 
     <EditText
         android:id="@+id/FName"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:autofillHints=""
         android:ems="10"
@@ -19,7 +22,7 @@
         android:inputType="textPersonName"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/camera"
         tools:targetApi="o" />
@@ -29,7 +32,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:autofillHints=""
         android:ems="10"
@@ -37,7 +40,7 @@
         android:inputType="textPersonName"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/FName"
         tools:targetApi="o" />
@@ -47,7 +50,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:autofillHints=""
         android:ems="10"
@@ -55,6 +58,7 @@
         android:inputType="textEmailAddress"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LName"
         tools:targetApi="o" />
@@ -64,7 +68,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:autofillHints=""
         android:ems="10"
@@ -72,6 +76,7 @@
         android:inputType="textPassword"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Email"
         tools:targetApi="o" />
@@ -81,7 +86,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
         android:autofillHints=""
         android:ems="10"
@@ -89,6 +94,7 @@
         android:inputType="textPassword"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Password"
         tools:targetApi="o" />
@@ -98,48 +104,40 @@
         style="@style/FirebaseUI.Button.AccountChooser"
         android:layout_width="116dp"
         android:layout_height="52dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="52dp"
         android:backgroundTint="@color/primary_material_light_1"
         android:fontFamily="@font/norwester"
         android:text="@string/button_cancel"
         android:textAlignment="center"
         android:textColor="@color/browser_actions_bg_grey"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
-        app:layout_constraintStart_toEndOf="@+id/buttonSignUp"
-        app:layout_constraintTop_toBottomOf="@+id/passwordSignUpRepeat"
-        tools:background="@color/primary_material_light_1" />
-
-    <Button
-        android:id="@+id/buttonSignUp"
-        style="@style/FirebaseUI.Button"
-        android:layout_width="116dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="@color/primary_material_light_1"
-        android:fontFamily="@font/norwester"
-        android:text="@string/signUp"
-        android:textAlignment="center"
-        android:textColor="@color/browser_actions_bg_grey"
-        android:textColorLink="@color/primary_material_light_1"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/submitButton"
         app:layout_constraintTop_toBottomOf="@+id/passwordSignUpRepeat"
         tools:background="@color/primary_material_light_1" />
 
     <ImageView
         android:id="@+id/camera"
-        android:layout_width="216dp"
-        android:layout_height="117dp"
+        android:layout_width="272dp"
+        android:layout_height="162dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/camera_icon"
-        android:contentDescription="@string/todo" />
+        app:srcCompat="@drawable/camera_icon" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="116dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="80dp"
+        android:text="@string/submit"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="604dp" />
 
 </android.support.constraint.ConstraintLayout>
