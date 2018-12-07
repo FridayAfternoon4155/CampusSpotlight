@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedFragment = null;
-
+            Boolean statement = false;
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     Toast.makeText(MainActivity.this, "Home Clicked", Toast.LENGTH_SHORT).show();
@@ -81,16 +81,19 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
                     selectedFragment = new HomeFragment();
                     homeFragment = selectedFragment;
                     Log.i(TAG, "onNavigationItemSelected: SelectedFragment: " + selectedFragment.toString());
+                    statement = true;
                     break;
                 case R.id.navigation_dashboard:
                     Toast.makeText(MainActivity.this, "Dashboard Clicked", Toast.LENGTH_SHORT).show();
                     selectedFragment = new DashboardFragment();
                     Log.i(TAG, "onNavigationItemSelected: SelectedFragment: " + selectedFragment.toString());
+                    statement = true;
                     break;
                 case R.id.navigation_profile:
                     Toast.makeText(MainActivity.this, "Profile Clicked", Toast.LENGTH_SHORT).show();
                     selectedFragment = new ProfileFragment();
                     Log.i(TAG, "onNavigationItemSelected: SelectedFragment: " + selectedFragment.toString());
+                    statement = true;
                     break;
             }
 
@@ -99,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
             .addToBackStack(null)
             .commit();
             Log.i(TAG, "onNavigationItemSelected: passed fragment commit.");
-            return false;
+            return statement;
         }
     };
 
