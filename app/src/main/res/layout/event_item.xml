@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="380dp"
+    android:layout_width="match_parent"
     android:layout_height="170dp"
     android:background="#00703C">
 
     <TextView
         android:id="@+id/date_time"
-        android:layout_width="116dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="132dp"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="140dp"
         android:text="@string/dateTime"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/calendarPic"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,7 +22,6 @@
         android:layout_width="232dp"
         android:layout_height="55dp"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="12dp"
         android:fontFamily="@font/norwester"
         android:text="@string/eventTitle"
         android:textAlignment="center"
@@ -48,7 +47,7 @@
     <TextView
         android:id="@+id/eventLocation"
         android:layout_width="167dp"
-        android:layout_height="33dp"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="68dp"
         android:text="@string/location"

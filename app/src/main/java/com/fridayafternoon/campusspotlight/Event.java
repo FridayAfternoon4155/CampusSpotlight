@@ -6,7 +6,6 @@ import android.os.Parcelable;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -95,7 +94,7 @@ public class Event implements Parcelable {
     public String getDate(){
          int dateInt =Integer.parseInt(date);
          Date date = new Date(dateInt*1000L);
-         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+         DateFormat format = new SimpleDateFormat("MM/dd/yy hh:mm a");
          format.setTimeZone(TimeZone.getTimeZone("Etc/UTC"));
          String formatted = format.format(date);
          return formatted;

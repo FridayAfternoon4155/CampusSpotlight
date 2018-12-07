@@ -2,6 +2,8 @@ package com.fridayafternoon.campusspotlight;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +20,7 @@ import java.util.ArrayList;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class HomeFragment extends android.app.Fragment {
+public class HomeFragment extends android.app.Fragment implements View.OnClickListener {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
@@ -74,7 +76,9 @@ public class HomeFragment extends android.app.Fragment {
         eventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO Put the stuff for the link to the things here
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(events.get(position).getLink()));
+                Log.i(TAG, "onItemClick: event position link" + events.get(position).getLink());
+                startActivity(browserIntent);
             }
         });
         return view;
@@ -96,6 +100,11 @@ public class HomeFragment extends android.app.Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 
 

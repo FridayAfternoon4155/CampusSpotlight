@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     String usersName;
     ArrayList<Event> events = new ArrayList<>();
     FragmentManager fragmentManager = getFragmentManager();
-    Fragment homeFragment = new HomeFragment();
+    Fragment initFragment;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -121,12 +121,17 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        new GetXMLAsync().execute();
+        initFragment = new HomeFragment();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentLayout, new HomeFragment())
+        fragmentTransaction.replace(R.id.fragmentLayout, initFragment)
                 .addToBackStack(null)
                 .commit();
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("events", events);
+        initFragment.setArguments(bundle);
 
-        new GetXMLAsync().execute();
+
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -306,8 +311,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
                 e.printStackTrace();
             }
 
-
-
             return null;
         }
 
@@ -326,7 +329,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
 
         @Override
         protected void onPostExecute(String s) {
-            super.onPostExecute(s);
 
         }
 
