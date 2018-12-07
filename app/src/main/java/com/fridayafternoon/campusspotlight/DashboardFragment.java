@@ -72,6 +72,7 @@ public class DashboardFragment extends android.app.Fragment {
             }
         });
         return view;
+
     }
 
 
