@@ -87,6 +87,7 @@ public class ProfileFragment extends android.app.Fragment implements View.OnClic
         storageReference = mStorage.getReference();
         if (mAuth.getCurrentUser() != null) {
             usersName = mAuth.getCurrentUser().getDisplayName();
+            email = mAuth.getCurrentUser().getEmail();
         }
         final View view = inflater.inflate(R.layout.fragment_profile, container, false);
         Button signOutButton = view.findViewById(R.id.signOutButton);
