@@ -10,76 +10,75 @@
 
     <ImageView
         android:id="@+id/profilePanel"
-        android:layout_width="385dp"
-        android:layout_height="254dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="473dp"
+        android:layout_height="296dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
         android:contentDescription="@string/profilePanel"
         android:src="@color/primary_material_light_1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileImage"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/MiddlePanel"
-        android:layout_width="387dp"
-        android:layout_height="24dp"
+        android:layout_width="0dp"
+        android:layout_height="57dp"
         android:contentDescription="@string/middlePanel"
         android:src="@color/uncGold"
-        app:layout_constraintBottom_toTopOf="@+id/profilePanel"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
     <ImageView
         android:id="@+id/TopPanel"
-        android:layout_width="387dp"
+        android:layout_width="0dp"
         android:layout_height="44dp"
         android:contentDescription="@string/topPanel"
         android:src="@color/uncGold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/profileName"
-        android:layout_width="172dp"
+        android:layout_width="326dp"
         android:layout_height="46dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="64dp"
         android:fontFamily="@font/norwester"
         android:text="@string/profileName"
         android:textAlignment="center"
         android:textColor="@color/browser_actions_bg_grey"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:typeface="sans"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MiddlePanel" />
 
     <TextView
         android:id="@+id/profileEmail"
-        android:layout_width="168dp"
+        android:layout_width="240dp"
         android:layout_height="48dp"
-        android:layout_marginStart="112dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/profileEmail"
         android:textAlignment="center"
         android:textColor="@color/browser_actions_bg_grey"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:typeface="normal"
-        app:layout_constraintStart_toStartOf="@+id/profilePanel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileName" />
 
     <ImageButton
         android:id="@+id/editProfile"
-        android:layout_width="58dp"
-        android:layout_height="42dp"
+        android:layout_width="76dp"
+        android:layout_height="58dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:alpha="0.70"
@@ -92,27 +91,31 @@
 
     <ImageView
         android:id="@+id/profileImage"
-        android:layout_width="384dp"
-        android:layout_height="215dp"
+        android:layout_width="411dp"
+        android:layout_height="305dp"
 
         android:layout_marginEnd="8dp"
         android:contentDescription="@string/profilePicture"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TopPanel"
         tools:src="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/signOutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="178dp"
+        android:layout_height="62dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
 
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
         android:contentDescription="@string/signOutButton"
         android:fontFamily="@font/norwester"
         android:text="@string/signOutButton"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.539"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileEmail"
         tools:background="@color/uncGold" />
