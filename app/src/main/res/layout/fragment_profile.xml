@@ -60,19 +60,18 @@
 
     <TextView
         android:id="@+id/profileEmail"
-        android:layout_width="240dp"
+        android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
         android:text="@string/profileEmail"
         android:textAlignment="center"
         android:textColor="@color/browser_actions_bg_grey"
-        android:textSize="24sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:typeface="normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileName" />
 
