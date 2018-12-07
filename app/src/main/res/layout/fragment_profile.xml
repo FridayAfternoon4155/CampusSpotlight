@@ -18,7 +18,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MiddlePanel" />
 
     <ImageView
         android:id="@+id/MiddlePanel"
@@ -47,7 +48,7 @@
         android:layout_width="326dp"
         android:layout_height="46dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/norwester"
         android:text="@string/profileName"
         android:textAlignment="center"
@@ -62,7 +63,7 @@
         android:layout_width="240dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
         android:text="@string/profileEmail"
         android:textAlignment="center"
@@ -79,15 +80,17 @@
         android:id="@+id/editProfile"
         android:layout_width="76dp"
         android:layout_height="58dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="28dp"
         android:alpha="0.70"
         android:background="@color/fui_transparent"
         android:contentDescription="@string/editProfile"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_launcher_neweditbutton_round"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MiddlePanel" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
     <ImageView
         android:id="@+id/profileImage"
@@ -108,14 +111,14 @@
         android:layout_height="62dp"
         android:layout_marginStart="8dp"
 
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:contentDescription="@string/signOutButton"
         android:fontFamily="@font/norwester"
         android:text="@string/signOutButton"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileEmail"
         tools:background="@color/uncGold" />

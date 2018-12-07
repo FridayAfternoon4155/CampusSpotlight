@@ -1,12 +1,26 @@
 package com.fridayafternoon.campusspotlight;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 /**
@@ -17,9 +31,16 @@ import android.view.ViewGroup;
  * Use the {@link ProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProfileFragment extends android.app.Fragment {
+public class ProfileFragment extends android.app.Fragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    DialogInterface.OnClickListener dialogClickListener;
+    FirebaseAuth mAuth;
+    DatabaseReference mDatabase;
+    FirebaseStorage mStorage;
+    StorageReference storageReference;
+    String usersName;
+
 
     // TODO: Rename and change types of parameters
     private String displayName;
@@ -55,13 +76,32 @@ public class ProfileFragment extends android.app.Fragment {
             displayName = getArguments().getString(ARG_PARAM1);
             email = getArguments().getString(ARG_PARAM2);
         }
+
+
+
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mStorage = FirebaseStorage.getInstance();
+        storageReference = mStorage.getReference();
+        if (mAuth.getCurrentUser() != null) {
+            usersName = mAuth.getCurrentUser().getDisplayName();
+        }
+        final View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        Button signOutButton = view.findViewById(R.id.signOutButton);
+        signOutButton.setOnClickListener(this);
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return view;
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -87,6 +127,45 @@ public class ProfileFragment extends android.app.Fragment {
         super.onDetach();
         mListener = null;
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.signOutButton:
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle(Html.fromHtml("<font color='#000000'>Are you sure?</font>"))
+                        .setNegativeButton("No", null)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which) {
+                                    case DialogInterface.BUTTON_POSITIVE:
+                                        SharedPreferences prefs = getActivity().getSharedPreferences("info", MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = prefs.edit();
+                                        editor.putString("email", mAuth.getCurrentUser().getEmail());
+                                        editor.commit();
+
+                                        mAuth.signOut();
+                                        Intent intent = new Intent(getActivity(), LoginActivity.class);
+                                        startActivity(intent);
+                                        getActivity().finish();
+                                        break;
+
+                                    case DialogInterface.BUTTON_NEGATIVE:
+                                        //No was clicked
+                                        break;
+                                }
+                            }
+                        });
+                builder.create().show();
+
+
+                break;
+
+        }
+
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this
