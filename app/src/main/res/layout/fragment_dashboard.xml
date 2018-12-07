@@ -5,11 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".DashboardFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="MackDaddy"
-        android:textSize="36sp" />
     <ListView
         android:id="@+id/listViewDashboard"
         android:layout_width="match_parent"
