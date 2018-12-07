@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,9 +43,7 @@ public class ProfileFragment extends android.app.Fragment implements View.OnClic
     FirebaseStorage mStorage;
     StorageReference storageReference;
     String usersName;
-
-    private String displayName;
-    private String email;
+    String email;
 
 
 
@@ -75,7 +74,7 @@ public class ProfileFragment extends android.app.Fragment implements View.OnClic
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            displayName = getArguments().getString(ARG_PARAM1);
+            usersName = getArguments().getString(ARG_PARAM1);
             email = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -106,6 +105,10 @@ public class ProfileFragment extends android.app.Fragment implements View.OnClic
         TextView profileEmail = view.findViewById(R.id.profileEmail);
         profileEmail.setText(email);
         Log.i("info", "onCreateView: " + email);
+
+
+        ImageView editButton = view.findViewById(R.id.editProfile);
+        editButton.setOnClickListener(this);
 
         // Inflate the layout for this fragment
         return view;
@@ -169,6 +172,10 @@ public class ProfileFragment extends android.app.Fragment implements View.OnClic
                 builder.create().show();
 
 
+                break;
+            case R.id.editProfile:
+                Intent intent = new Intent(getActivity(), EditProfile.class);
+                startActivity(intent);
                 break;
 
         }

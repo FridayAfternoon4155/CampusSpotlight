@@ -27,6 +27,7 @@
         </activity>
         <activity android:name="com.fridayafternoon.campusspotlight.MainActivity" />
         <activity android:name="com.fridayafternoon.campusspotlight.SignUpActivity" />
+        <activity android:name="com.fridayafternoon.campusspotlight.EditProfile" />
 
         <service
             android:name="com.fridayafternoon.campusspotlight.PushNotifications"
