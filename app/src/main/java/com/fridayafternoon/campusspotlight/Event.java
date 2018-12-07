@@ -4,6 +4,12 @@ import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
+import java.util.TimeZone;
+
 @SuppressLint("ParcelCreator")
 public class Event implements Parcelable {
     public String count, date, location, time, description, tags, link, title, type, organization;
@@ -86,8 +92,13 @@ public class Event implements Parcelable {
         this.organization = organization;
     }
 
-    public String getDate() {
-        return date;
+    public String getDate(){
+         int dateInt =Integer.parseInt(date);
+         Date date = new Date(dateInt*1000L);
+         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+         format.setTimeZone(TimeZone.getTimeZone("Etc/UTC"));
+         String formatted = format.format(date);
+         return formatted;
     }
 
     public void setDate(String date) {
