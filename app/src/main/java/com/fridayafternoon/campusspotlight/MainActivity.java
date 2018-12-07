@@ -79,7 +79,9 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
                     Toast.makeText(MainActivity.this, "Home Clicked", Toast.LENGTH_SHORT).show();
                         new GetXMLAsync().execute();
                     selectedFragment = new HomeFragment();
-                    homeFragment = selectedFragment;
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelableArrayList("events", events);
+                    selectedFragment.setArguments(bundle);
                     Log.i(TAG, "onNavigationItemSelected: SelectedFragment: " + selectedFragment.toString());
                     statement = true;
                     break;
@@ -156,6 +158,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
                 }
             }
         };
+
+
 
         //set users name
         //usersName.setText(mAuth.getCurrentUser().getDisplayName());
@@ -301,9 +305,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
             } catch (XmlPullParserException | IOException | ParserConfigurationException | SAXException e) {
                 e.printStackTrace();
             }
-            Bundle bundle = new Bundle();
-            bundle.putParcelableArrayList("events", events);
-            homeFragment.setArguments(bundle);
+
+
 
             return null;
         }

@@ -27,6 +27,7 @@ public class HomeFragment extends android.app.Fragment {
     Activity context = getActivity();
     HomeAdapter adapter;
     ListView eventList;
+    String TAG = "info";
 
 
     /**
@@ -55,6 +56,7 @@ public class HomeFragment extends android.app.Fragment {
         } else {
 
         }
+        Log.i("info", "onCreate: array size" + events.size());
 
     }
 
