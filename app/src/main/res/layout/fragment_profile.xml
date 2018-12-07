@@ -11,15 +11,19 @@
     <ImageView
         android:id="@+id/profilePanel"
         android:layout_width="385dp"
-        android:layout_height="175dp"
+        android:layout_height="254dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:contentDescription="@string/profilePanel"
         android:src="@color/primary_material_light_1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileImage" />
+        app:layout_constraintTop_toBottomOf="@+id/profileImage"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/MiddlePanel"
@@ -47,17 +51,14 @@
         android:id="@+id/profileName"
         android:layout_width="172dp"
         android:layout_height="46dp"
-        android:layout_marginStart="128dp"
+        android:layout_marginStart="112dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
         android:fontFamily="@font/norwester"
         android:text="@string/profileName"
         android:textAlignment="center"
         android:textColor="@color/browser_actions_bg_grey"
         android:textSize="24sp"
         android:typeface="sans"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.009"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MiddlePanel" />
 
@@ -65,16 +66,13 @@
         android:id="@+id/profileEmail"
         android:layout_width="168dp"
         android:layout_height="48dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="112dp"
         android:text="@string/profileEmail"
         android:textAlignment="center"
         android:textColor="@color/browser_actions_bg_grey"
         android:textSize="18sp"
         android:textStyle="bold"
         android:typeface="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/profilePanel"
         app:layout_constraintTop_toBottomOf="@+id/profileName" />
 
