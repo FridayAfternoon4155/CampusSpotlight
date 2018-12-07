@@ -133,4 +133,5 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
     public interface OnListFragmentInteractionListener {
         void onListFragmentInteraction(Event event);
     }
+
 }
