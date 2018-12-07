@@ -41,8 +41,6 @@ public class ProfileFragment extends android.app.Fragment implements View.OnClic
     StorageReference storageReference;
     String usersName;
 
-
-    // TODO: Rename and change types of parameters
     private String displayName;
     private String email;
 
@@ -76,9 +74,6 @@ public class ProfileFragment extends android.app.Fragment implements View.OnClic
             displayName = getArguments().getString(ARG_PARAM1);
             email = getArguments().getString(ARG_PARAM2);
         }
-
-
-
     }
 
 
@@ -96,7 +91,6 @@ public class ProfileFragment extends android.app.Fragment implements View.OnClic
         final View view = inflater.inflate(R.layout.fragment_profile, container, false);
         Button signOutButton = view.findViewById(R.id.signOutButton);
         signOutButton.setOnClickListener(this);
-
 
         // Inflate the layout for this fragment
         return view;
