@@ -97,10 +97,12 @@ public class ProfileFragment extends android.app.Fragment implements View.OnClic
         Button signOutButton = view.findViewById(R.id.signOutButton);
         signOutButton.setOnClickListener(this);
 
+        //Displays Profile Name to Profile Page
         TextView profileName = view.findViewById(R.id.profileName);
         profileName.setText(usersName);
         Log.i("info", "onCreateView: " + usersName);
 
+        //Displays Email to Profile Page
         TextView profileEmail = view.findViewById(R.id.profileEmail);
         profileEmail.setText(email);
         Log.i("info", "onCreateView: " + email);
