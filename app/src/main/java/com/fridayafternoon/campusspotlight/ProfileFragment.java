@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.icu.text.IDNA;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -47,12 +46,7 @@ public class ProfileFragment extends android.app.Fragment implements View.OnClic
     private String displayName;
     private String email;
 
-//    private String profileName;
-//    private String profileEmail;
-    TextView profileName;
-//    TextView profileEmail;
 
-    //Button editButton
 
     private OnFragmentInteractionListener mListener;
 
@@ -103,9 +97,9 @@ public class ProfileFragment extends android.app.Fragment implements View.OnClic
         Button signOutButton = view.findViewById(R.id.signOutButton);
         signOutButton.setOnClickListener(this);
 
-        profileName = view.findViewById(R.id.profileName);
-        profileName.setText(displayName);
-        Log.i("info", "onCreateView: " + displayName);
+        TextView profileName = view.findViewById(R.id.profileName);
+        profileName.setText(usersName);
+        Log.i("info", "onCreateView: " + usersName);
 
         TextView profileEmail = view.findViewById(R.id.profileEmail);
         profileEmail.setText(email);

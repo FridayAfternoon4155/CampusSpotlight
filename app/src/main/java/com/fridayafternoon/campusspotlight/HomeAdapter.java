@@ -1,5 +1,6 @@
 package com.fridayafternoon.campusspotlight;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -35,6 +36,7 @@ public class HomeAdapter extends ArrayAdapter<Event> {
         this.events = objects;
     }
 
+    @SuppressLint("ViewHolder")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -47,6 +49,7 @@ public class HomeAdapter extends ArrayAdapter<Event> {
         eventLocation = convertView.findViewById(R.id.eventLocation);
         date_time = convertView.findViewById(R.id.date_time);
 
+        assert event != null;
         eventTitle.setText(event.getTitle());
         eventLocation.setText(event.getLocation());
         date_time.setText(event.getDate());

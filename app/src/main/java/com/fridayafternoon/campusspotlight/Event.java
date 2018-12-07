@@ -6,12 +6,11 @@ import android.os.Parcelable;
 
 @SuppressLint("ParcelCreator")
 public class Event implements Parcelable {
-    public String count, name, date, location, time, description, tags, link, title, type, organization;
+    public String count, date, location, time, description, tags, link, title, type, organization;
 
 
     protected Event(Parcel in) {
         count = in.readString();
-        name = in.readString();
         date = in.readString();
         location = in.readString();
         time = in.readString();
@@ -46,8 +45,7 @@ public class Event implements Parcelable {
     public Event() {
     }
 
-    public Event(String name, String date, String location, String time, String description, String tags, String link) {
-        this.name = name;
+    public Event(String date, String location, String time, String description, String tags, String link) {
         this.date = date;
         this.location = location;
         this.time = time;
@@ -86,14 +84,6 @@ public class Event implements Parcelable {
 
     public void setOrganization(String organization) {
         this.organization = organization;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDate() {
@@ -140,7 +130,6 @@ public class Event implements Parcelable {
     public String toString() {
         return "Event{" +
                 "count='" + count + '\'' +
-                ", name='" + name + '\'' +
                 ", date='" + date + '\'' +
                 ", location='" + location + '\'' +
                 ", time='" + time + '\'' +
@@ -161,7 +150,6 @@ public class Event implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(count);
-        dest.writeString(name);
         dest.writeString(date);
         dest.writeString(location);
         dest.writeString(time);
