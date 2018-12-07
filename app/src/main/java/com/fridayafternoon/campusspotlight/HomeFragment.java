@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -68,15 +68,13 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View eventItem = inflater.inflate(R.layout.event_item, container, false);
 
         adapter = new HomeAdapter(getContext(), R.layout.activity_main, events, mListener);
         Log.i("info", "//=== VIEW IS NULL: " + Boolean.toString(view==null));
         eventList = view.findViewById(R.id.listViewHome);
         eventList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-
-        ImageView pinButton = view.findViewById(R.id.GoingButton);
-        pinButton.setOnClickListener(this);
 
         eventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -87,6 +85,8 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
             }
         });
 
+        ImageButton pinButton = eventItem.findViewById(R.id.GoingButton);
+        pinButton.setOnClickListener(this);
 
         return view;
     }
@@ -101,6 +101,8 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
         }
+
+
     }
 
     @Override

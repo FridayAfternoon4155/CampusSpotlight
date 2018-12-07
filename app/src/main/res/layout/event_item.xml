@@ -43,6 +43,8 @@
         android:background="#00703C"
         android:contentDescription="@string/bookmark_going"
         android:scaleType="fitXY"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_bookmarkround" />
