@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
             }
 
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment, selectedFragment)
+            fragmentTransaction.replace(R.id.fragmentLayout, selectedFragment)
             .addToBackStack(null)
             .commit();
             Log.i(TAG, "onNavigationItemSelected: passed fragment commit.");
@@ -116,6 +116,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentLayout, new HomeFragment())
+                .addToBackStack(null)
+                .commit();
 
         new GetXMLAsync().execute();
 
