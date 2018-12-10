@@ -85,10 +85,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
                     bundle.putParcelableArrayList("events", events);
                     selectedFragment.setArguments(bundle);
                     Log.i(TAG, "onNavigationItemSelected: SelectedFragment: " + selectedFragment.toString());
-
-
-
-
                     statement = true;
                     break;
                 case R.id.navigation_dashboard:
@@ -130,9 +126,11 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
         new GetXMLAsync().execute();
         initFragment = new HomeFragment();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentLayout, initFragment)
-                .addToBackStack(null)
-                .commit();
+        if (savedInstanceState == null) {
+            fragmentTransaction.replace(R.id.fragmentLayout, initFragment)
+                    .addToBackStack(null)
+                    .commit();
+        }
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList("events", events);
         initFragment.setArguments(bundle);

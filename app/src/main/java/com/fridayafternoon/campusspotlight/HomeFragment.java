@@ -29,7 +29,7 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
     ArrayList<Event> events = new ArrayList<>();
     Activity context = getActivity();
     HomeAdapter adapter;
-
+    ListView eventList;
     String TAG = "info";
 
 
@@ -69,7 +69,10 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
         View eventItem = inflater.inflate(R.layout.event_item, container, false);
 
-        ListView eventList = view.findViewById(R.id.listViewHome);
+        eventList = view.findViewById(R.id.listViewHome);
+        adapter = new HomeAdapter(getContext(), R.layout.activity_main, events, mListener);
+        eventList.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
         eventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -80,12 +83,6 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
                 startActivity(browserIntent);
             }
         });
-
-        adapter = new HomeAdapter(getContext(), R.layout.activity_main, events, mListener);
-
-        eventList.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-
         Log.i(TAG, "onCreateView: Reached line 89");
         ImageButton pinButton = eventItem.findViewById(R.id.GoingButton);
         pinButton.setOnClickListener(this);
