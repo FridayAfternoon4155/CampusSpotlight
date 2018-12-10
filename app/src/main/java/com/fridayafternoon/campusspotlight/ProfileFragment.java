@@ -110,6 +110,9 @@ public class ProfileFragment extends android.app.Fragment implements View.OnClic
         ImageView editButton = view.findViewById(R.id.editProfile);
         editButton.setOnClickListener(this);
 
+        Button addEventButton = view.findViewById(R.id.addEventButton);
+        addEventButton.setOnClickListener(this);
+
         // Inflate the layout for this fragment
         return view;
 
@@ -176,6 +179,10 @@ public class ProfileFragment extends android.app.Fragment implements View.OnClic
             case R.id.editProfile:
                 Intent intent = new Intent(getActivity(), EditProfile.class);
                 startActivity(intent);
+                break;
+            case R.id.addEventButton:
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://events.uncc.edu/user/login?destination=node/add/event"));
+                startActivity(browserIntent);
                 break;
 
         }

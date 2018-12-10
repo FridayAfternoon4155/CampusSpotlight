@@ -51,5 +51,7 @@
     <string name="title_activity_edit_profile">EditProfile</string>
     <string name="submit">Submit</string>
     <string name="background">background</string>
+    <string name="add_event">Add Event</string>
+    <string name="create_event">Create Event</string>
 </resources>
 
