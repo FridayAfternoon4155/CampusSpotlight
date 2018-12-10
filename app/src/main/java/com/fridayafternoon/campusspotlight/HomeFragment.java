@@ -29,7 +29,7 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
     ArrayList<Event> events = new ArrayList<>();
     Activity context = getActivity();
     HomeAdapter adapter;
-    ListView eventList;
+
     String TAG = "info";
 
 
@@ -69,21 +69,24 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
         View eventItem = inflater.inflate(R.layout.event_item, container, false);
 
-        adapter = new HomeAdapter(getContext(), R.layout.activity_main, events, mListener);
-        Log.i("info", "//=== VIEW IS NULL: " + Boolean.toString(view==null));
-        eventList = view.findViewById(R.id.listViewHome);
-        eventList.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        ListView eventList = view.findViewById(R.id.listViewHome);
+
         eventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i(TAG, "onItemClick: reached 82");
+                Log.i(TAG, "onItemClick: reached itemclick");
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(events.get(position).getLink()));
                 Log.i(TAG, "onItemClick: event position link" + events.get(position).getLink());
                 startActivity(browserIntent);
             }
         });
-        Log.i(TAG, "onCreateView: Reached line 87");
+
+        adapter = new HomeAdapter(getContext(), R.layout.activity_main, events, mListener);
+
+        eventList.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+        Log.i(TAG, "onCreateView: Reached line 89");
         ImageButton pinButton = eventItem.findViewById(R.id.GoingButton);
         pinButton.setOnClickListener(this);
 

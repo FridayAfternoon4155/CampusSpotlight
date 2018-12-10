@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     ArrayList<Event> events = new ArrayList<>();
     FragmentManager fragmentManager = getFragmentManager();
     Fragment initFragment;
+    ListView eventList;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -83,6 +85,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
                     bundle.putParcelableArrayList("events", events);
                     selectedFragment.setArguments(bundle);
                     Log.i(TAG, "onNavigationItemSelected: SelectedFragment: " + selectedFragment.toString());
+
+
+
+
                     statement = true;
                     break;
                 case R.id.navigation_dashboard:
@@ -130,6 +136,9 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList("events", events);
         initFragment.setArguments(bundle);
+
+
+        eventList = findViewById(R.id.listViewHome);
 
 
 
