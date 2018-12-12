@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     Toast.makeText(MainActivity.this, "Home Clicked", Toast.LENGTH_SHORT).show();
-                        new GetXMLAsync().execute();
+                    new GetXMLAsync().execute();
                     selectedFragment = new HomeFragment();
                     Bundle bundle = new Bundle();
                     bundle.putParcelableArrayList("events", events);
@@ -136,10 +136,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
         bundle.putParcelableArrayList("events", events);
         initFragment.setArguments(bundle);
 
-
         eventList = findViewById(R.id.recyclerViewHome);
-
-
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();

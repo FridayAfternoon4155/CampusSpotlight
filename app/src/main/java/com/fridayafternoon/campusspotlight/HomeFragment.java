@@ -1,8 +1,11 @@
 package com.fridayafternoon.campusspotlight;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -70,9 +74,19 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
         eventList = view.findViewById(R.id.recyclerViewHome);
         eventList.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new HomeAdapter((Activity) getContext(), events, new HomeAdapter.SendData() {
+            @TargetApi(Build.VERSION_CODES.O)
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void sendEvent(Event event) {
-
+                LayoutInflater inflater = getLayoutInflater();
+                View eventItem = inflater.inflate(R.layout.event_item, null);
+                ImageButton pinItem = eventItem.findViewById(R.id.GoingButton);
+                pinItem.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getActivity(), "Pinned event", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         eventList.setAdapter(adapter);
