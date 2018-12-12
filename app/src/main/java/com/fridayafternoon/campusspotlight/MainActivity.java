@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     FragmentManager fragmentManager = getFragmentManager();
     Fragment initFragment;
     RecyclerView eventList;
-
+    Fragment selectedFragment = null;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment selectedFragment = null;
+
             Boolean statement = false;
             switch (item.getItemId()) {
                 case R.id.navigation_home:
@@ -121,20 +121,25 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     }
 
     @Override
+    protected void onStart() {
+        new GetXMLAsync().execute();
+        selectedFragment = new HomeFragment();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentLayout, selectedFragment)
+                .addToBackStack(null)
+                .commit();
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("events", events);
+        selectedFragment.setArguments(bundle);
+        super.onStart();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new GetXMLAsync().execute();
-        initFragment = new HomeFragment();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if (savedInstanceState == null) {
-            fragmentTransaction.replace(R.id.fragmentLayout, initFragment)
-                    .addToBackStack(null)
-                    .commit();
-        }
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList("events", events);
-        initFragment.setArguments(bundle);
+
 
         eventList = findViewById(R.id.recyclerViewHome);
 
