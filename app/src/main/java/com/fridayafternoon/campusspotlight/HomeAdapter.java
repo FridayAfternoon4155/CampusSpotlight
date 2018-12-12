@@ -1,12 +1,16 @@
 package com.fridayafternoon.campusspotlight;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fridayafternoon.campusspotlight.HomeFragment.OnListFragmentInteractionListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +34,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         public TextView eventTitle;
         public TextView eventLocation;
         public TextView date_time;
+        public ImageButton pinItem;
 
 
         public ViewHolder(final View itemView) {
@@ -38,10 +43,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             eventTitle = itemView.findViewById(R.id.eventTitle);
             eventLocation = itemView.findViewById(R.id.eventLocation);
             date_time = itemView.findViewById(R.id.date_time);
+            pinItem = itemView.findViewById(R.id.GoingButton);
         }
     }
 
-    public HomeAdapter(Activity context, ArrayList<Event> events, SendData data) {
+    public HomeAdapter(Activity context, ArrayList<Event> events) {
         this.aContext = context;
         this.events = events;
     }
@@ -62,6 +68,22 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         holder.eventTitle.setText(event.getTitle());
         holder.eventLocation.setText(event.getLocation());
         holder.date_time.setText(event.getDate());
+
+        holder.pinItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(aContext, "Pinned Item", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.eventTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(aContext, "Clicked Title", Toast.LENGTH_SHORT).show();
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(events.get(position).getLink()));
+                aContext.startActivity(browserIntent);
+            }
+        });
     }
 
     @Override
@@ -69,8 +91,5 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         return events.size();
     }
 
-    public interface SendData {
-        void sendEvent(Event event);
-    }
 }
 
