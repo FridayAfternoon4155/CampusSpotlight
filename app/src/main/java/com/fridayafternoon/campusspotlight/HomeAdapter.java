@@ -21,15 +21,16 @@ import java.util.ArrayList;
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     Activity aContext;
     ArrayList<Event> events = new ArrayList<>();
-    public Event event;
     DatabaseReference mDatabase;
     FirebaseAuth mAuth;
+    public Event event;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public View mView;
         public TextView eventTitle;
         public TextView eventLocation;
         public TextView date_time;
+
 
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -56,6 +57,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull HomeAdapter.ViewHolder holder, int position) {
+        event = events.get(position);
         assert event != null;
         holder.eventTitle.setText(event.getTitle());
         holder.eventLocation.setText(event.getLocation());

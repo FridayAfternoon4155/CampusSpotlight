@@ -59,7 +59,7 @@ public class DashboardFragment extends android.app.Fragment {
 
         adapter = new DashboardAdapter(getContext(), R.layout.activity_main, events, mListener);
         Log.i("info", "//=== VIEW IS NULL: " + Boolean.toString(view==null));
-        eventList = view.findViewById(R.id.listViewDashboard);
+        eventList = view.findViewById(R.id.recyclerViewDashboard);
         Log.i("info", "//=== EVENTLIST IS NULL: " + Boolean.toString(eventList==null));
         Log.i("info", "//=== ADAPTER IS NULL: " + Boolean.toString(adapter==null));
         eventList.setAdapter(adapter);
