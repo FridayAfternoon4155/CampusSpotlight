@@ -29,6 +29,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     public Event event;
+    SendData data;
 
 
 
@@ -50,9 +51,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         }
     }
 
-    public HomeAdapter(Activity context, ArrayList<Event> events) {
+    public HomeAdapter(Activity context, ArrayList<Event> events, SendData data) {
         this.aContext = context;
         this.events = events;
+        this.data = data;
     }
 
     @NonNull
@@ -78,8 +80,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             public void onClick(View v) {
                 Toast.makeText(aContext, "Pinned Item", Toast.LENGTH_SHORT).show();
                 event.setUser(mAuth.getCurrentUser().toString());
-                mDatabase.child("event").push().setValue(event);
-                notifyDataSetChanged();
+                data.addEvent(event);
 
             }
         });
@@ -97,6 +98,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return events.size();
+    }
+
+    public interface SendData {
+        void deleteEvent(Event event);
+        void addEvent(Event event);
     }
 
 }

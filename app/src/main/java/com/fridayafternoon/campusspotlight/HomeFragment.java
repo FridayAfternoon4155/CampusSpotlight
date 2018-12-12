@@ -11,6 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 /**
@@ -29,6 +33,8 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
     HomeAdapter adapter;
     RecyclerView eventList;
     String TAG = "info";
+    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
 
     /**
@@ -69,7 +75,17 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
 
         eventList = view.findViewById(R.id.recyclerViewHome);
         eventList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new HomeAdapter(getActivity(), events);
+        adapter = new HomeAdapter(getActivity(), events, new HomeAdapter.SendData() {
+            @Override
+            public void deleteEvent(Event event) {
+
+            }
+
+            @Override
+            public void addEvent(Event event) {
+                mDatabase.child("events").push().setValue(event);
+            }
+        });
         eventList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
