@@ -47,7 +47,7 @@ public class EditProfile extends AppCompatActivity {
         etEmail = findViewById(R.id.Email);
         etPassword = findViewById(R.id.Password);
         etPasswordRepeat = findViewById(R.id.passwordSignUpRepeat);
-        buttonSignUp = findViewById(R.id.buttonSignUp);
+        buttonSignUp = findViewById(R.id.submitButton);
         buttonCancel = findViewById(R.id.buttonCancel);
 
 

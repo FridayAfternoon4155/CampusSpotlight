@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -224,9 +225,11 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
      */
     private class GetXMLAsync extends AsyncTask<String, String, String> {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        ProgressDialog dialog = new ProgressDialog(MainActivity.this);
 
         @Override
         protected String doInBackground(String... strings) {
+
             try {
                     HttpURLConnection connection = null;
                     URL url = new URL("https://campusevents.uncc.edu/feed/cci-student-xml");
@@ -323,6 +326,13 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            dialog.setMessage("Loading Events!");
+            dialog.show();
+
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
             selectedFragment = new HomeFragment();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.add(R.id.fragmentLayout, selectedFragment)
@@ -332,12 +342,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
             Bundle bundle = new Bundle();
             bundle.putParcelableArrayList("events", events);
             selectedFragment.setArguments(bundle);
-
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-
+            dialog.dismiss();
         }
 
         @Override
