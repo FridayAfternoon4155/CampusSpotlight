@@ -79,6 +79,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                 Toast.makeText(aContext, "Pinned Item", Toast.LENGTH_SHORT).show();
                 event.setUser(mAuth.getCurrentUser().toString());
                 mDatabase.child("event").push().setValue(event);
+                notifyDataSetChanged();
 
             }
         });
