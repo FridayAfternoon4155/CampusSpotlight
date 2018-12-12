@@ -122,16 +122,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
 
     @Override
     protected void onStart() {
-        new GetXMLAsync().execute();
-        selectedFragment = new HomeFragment();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentLayout, selectedFragment)
-                .addToBackStack(null)
-                .commit();
-
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList("events", events);
-        selectedFragment.setArguments(bundle);
         super.onStart();
     }
 
@@ -139,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        new GetXMLAsync().execute();
 
         eventList = findViewById(R.id.recyclerViewHome);
 
@@ -333,7 +323,15 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //TODO Check if there are new events to add to the database. If there are add them. If not, do nothing.
+            selectedFragment = new HomeFragment();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.fragmentLayout, selectedFragment)
+                    .addToBackStack(null)
+                    .commit();
+
+            Bundle bundle = new Bundle();
+            bundle.putParcelableArrayList("events", events);
+            selectedFragment.setArguments(bundle);
 
         }
 
