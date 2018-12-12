@@ -31,7 +31,6 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -91,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
                     break;
                 case R.id.navigation_dashboard:
                     Toast.makeText(MainActivity.this, "Dashboard Clicked", Toast.LENGTH_SHORT).show();
+                    new GetJSONAsync().execute();
                     selectedFragment = new DashboardFragment();
                     Log.i(TAG, "onNavigationItemSelected: SelectedFragment: " + selectedFragment.toString());
                     statement = true;
@@ -224,7 +224,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
      * The current code for reading html is wrong. I will fix later.
      */
     private class GetXMLAsync extends AsyncTask<String, String, String> {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         ProgressDialog dialog = new ProgressDialog(MainActivity.this);
 
         @Override
@@ -348,6 +347,46 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
         @Override
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+        }
+    }
+
+
+
+
+    private class GetJSONAsync extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+
+
+
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+        }
+
+        @Override
+        protected void onProgressUpdate(String... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onCancelled(String s) {
+            super.onCancelled(s);
         }
 
         @Override

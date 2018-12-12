@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.fridayafternoon.campusspotlight.HomeFragment.OnListFragmentInteractionListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -25,9 +26,11 @@ import java.util.ArrayList;
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     Activity aContext;
     ArrayList<Event> events = new ArrayList<>();
-    DatabaseReference mDatabase;
-    FirebaseAuth mAuth;
+    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
     public Event event;
+
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public View mView;
@@ -63,6 +66,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull HomeAdapter.ViewHolder holder, int position) {
+
         event = events.get(position);
         assert event != null;
         holder.eventTitle.setText(event.getTitle());
@@ -73,6 +77,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Toast.makeText(aContext, "Pinned Item", Toast.LENGTH_SHORT).show();
+                event.setUser(mAuth.getCurrentUser().toString());
+                mDatabase.child("event").push().setValue(event);
 
             }
         });

@@ -43,9 +43,9 @@ dependencies {
     //firebase
     implementation 'com.google.firebase:firebase-database:16.0.5'
     implementation 'com.firebaseui:firebase-ui-auth:4.0.0'
-    implementation 'com.google.firebase:firebase-auth:16.0.5'
+    implementation 'com.google.firebase:firebase-auth:16.1.0'
     implementation 'com.google.firebase:firebase-storage:16.0.5'
-    implementation 'com.google.firebase:firebase-core:16.0.5'
+    implementation 'com.google.firebase:firebase-core:16.0.6'
     implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
     //prettyTime
     implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
@@ -53,8 +53,7 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'net.sourceforge.htmlunit:htmlunit:2.33'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.7'
-    implementation 'com.google.firebase:firebase-firestore:17.1.3'
-    implementation 'com.google.firebase:firebase-firestore:15.0.0'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

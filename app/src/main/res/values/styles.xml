@@ -9,7 +9,7 @@
     <!--</style>-->
 
     <style name="UNCC" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">#00703C</item>
+        <item name="colorPrimary">#046A38</item>
         <item name="colorPrimaryDark">@color/primary_material_light_1</item>
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:textColorPrimaryInverse">@android:color/black</item>

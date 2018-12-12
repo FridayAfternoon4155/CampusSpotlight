@@ -11,7 +11,7 @@ import java.util.TimeZone;
 
 @SuppressLint("ParcelCreator")
 public class Event implements Parcelable {
-    public String count, date, location, time, description, tags, link, title, type, organization;
+    public String count, date, location, time, description, tags, link, title, type, organization, user, key;
 
 
     protected Event(Parcel in) {
@@ -25,6 +25,8 @@ public class Event implements Parcelable {
         title = in.readString();
         type = in.readString();
         organization = in.readString();
+        user = in.readString();
+        key = in.readString();
     }
 
     public static final Creator<Event> CREATOR = new Creator<Event>() {
@@ -50,13 +52,15 @@ public class Event implements Parcelable {
     public Event() {
     }
 
-    public Event(String date, String location, String time, String description, String tags, String link) {
+    public Event(String date, String location, String time, String description, String tags, String link, String user) {
         this.date = date;
         this.location = location;
         this.time = time;
         this.description = description;
         this.tags = tags;
         this.link = link;
+        this.user = user;
+        this.key = key;
     }
 
     public String getCount() {
@@ -149,7 +153,25 @@ public class Event implements Parcelable {
                 ", title='" + title + '\'' +
                 ", type='" + type + '\'' +
                 ", organization='" + organization + '\'' +
+                ", user='" + user + '\'' +
+                ", key='" + key + '\'' +
                 '}';
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     @Override
@@ -169,5 +191,7 @@ public class Event implements Parcelable {
         dest.writeString(title);
         dest.writeString(type);
         dest.writeString(organization);
+        dest.writeString(user);
+        dest.writeString(key);
     }
 }
