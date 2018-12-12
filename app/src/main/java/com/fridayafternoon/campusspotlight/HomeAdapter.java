@@ -73,6 +73,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Toast.makeText(aContext, "Pinned Item", Toast.LENGTH_SHORT).show();
+
             }
         });
 
