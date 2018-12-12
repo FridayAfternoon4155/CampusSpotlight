@@ -18,12 +18,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,7 +66,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     ArrayList<Event> events = new ArrayList<>();
     FragmentManager fragmentManager = getFragmentManager();
     Fragment initFragment;
-    ListView eventList;
+    RecyclerView eventList;
+
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -136,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
         initFragment.setArguments(bundle);
 
 
-        eventList = findViewById(R.id.listViewHome);
+        eventList = findViewById(R.id.recyclerViewHome);
 
 
 

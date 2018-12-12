@@ -2,16 +2,14 @@ package com.fridayafternoon.campusspotlight;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -29,7 +27,7 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
     ArrayList<Event> events = new ArrayList<>();
     Activity context = getActivity();
     HomeAdapter adapter;
-    ListView eventList;
+    RecyclerView eventList;
     String TAG = "info";
 
 
@@ -69,20 +67,26 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
         View eventItem = inflater.inflate(R.layout.event_item, container, false);
 
-        eventList = view.findViewById(R.id.listViewHome);
-        adapter = new HomeAdapter(getContext(), R.layout.activity_main, events, mListener);
+        eventList = view.findViewById(R.id.recyclerViewHome);
+        eventList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter = new HomeAdapter((Activity) getContext(), events, new HomeAdapter.SendData() {
+            @Override
+            public void sendEvent(Event event) {
+
+            }
+        });
         eventList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-        eventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i(TAG, "onItemClick: reached itemclick");
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(events.get(position).getLink()));
-                Log.i(TAG, "onItemClick: event position link" + events.get(position).getLink());
-                startActivity(browserIntent);
-            }
-        });
+//        eventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Log.i(TAG, "onItemClick: reached itemclick");
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(events.get(position).getLink()));
+//                Log.i(TAG, "onItemClick: event position link" + events.get(position).getLink());
+//                startActivity(browserIntent);
+//            }
+//        });
         Log.i(TAG, "onCreateView: Reached line 89");
         ImageButton pinButton = eventItem.findViewById(R.id.GoingButton);
         pinButton.setOnClickListener(this);
