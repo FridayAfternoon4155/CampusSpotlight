@@ -48,6 +48,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -64,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     StorageReference storageReference;
     String usersName;
     ArrayList<Event> events = new ArrayList<>();
+    ArrayList<String> tags = new ArrayList<>();
     FragmentManager fragmentManager = getFragmentManager();
     Fragment initFragment;
     RecyclerView eventList;
@@ -225,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
      */
     private class GetXMLAsync extends AsyncTask<String, String, String> {
         ProgressDialog dialog = new ProgressDialog(MainActivity.this);
-
+        Set<String> tagSet = new HashSet<>();
         @Override
         protected String doInBackground(String... strings) {
 
@@ -294,9 +298,18 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
                                     event.setOrganization(organization);
                                     event.setLink(path);
 
+
                                     Log.i("eventToString", "doInBackground: Event.toString()" + event.toString());
 
                                     events.add(event);
+
+                                    String[] array = event.getType().split("\\|");
+
+                                    for (int j = 0; j < array.length; j++) {
+                                        tagSet.add(array[j]);
+                                    }
+
+
 
                                 } else {
                                     Log.d("XMLDebug", "doInBackground: The parse of the XML failed. ");
@@ -342,6 +355,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
             bundle.putParcelableArrayList("events", events);
             selectedFragment.setArguments(bundle);
             dialog.dismiss();
+            tags.addAll(tagSet);
+            Log.i(TAG, "onPostExecute: print tags arraylist: " + tags.toString());
         }
 
         @Override
