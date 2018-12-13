@@ -99,8 +99,6 @@ public class EditProfile extends AppCompatActivity {
                                                 });
                                         user.updateEmail(email);
                                         user.updatePassword(password);
-
-
                                     }
                                 }
                             });

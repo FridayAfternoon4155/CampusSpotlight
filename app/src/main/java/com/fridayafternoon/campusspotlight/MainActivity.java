@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
@@ -31,6 +32,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -360,13 +363,51 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
                     .addToBackStack(null)
                     .commit();
             tags.addAll(tagSet);
+            HomeAdapter.SendData data = new HomeAdapter.SendData() {
+                @Override
+                public int describeContents() {
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel dest, int flags) {
+
+                }
+
+                @Override
+                public void deleteEvent(Event event) {
+
+                }
+
+                @Override
+                public void addEvent(Event event) {
+                    mDatabase.child("events").push().setValue(event).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(getApplicationContext(), "It worked", Toast.LENGTH_SHORT).show();
+                            Log.i(TAG, "onSuccess: It worked");
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getApplicationContext(), "It didn't work", Toast.LENGTH_SHORT).show();
+                            Log.i(TAG, "onFailure: It didn't. ");
+                        }
+                    });
+                }
+            };
+
             Bundle bundle = new Bundle();
             bundle.putParcelableArrayList("events", events);
             bundle.putStringArrayList("tags", tags);
+            bundle.putParcelable("data", data);
             selectedFragment.setArguments(bundle);
             dialog.dismiss();
 
             Log.i(TAG, "onPostExecute: print tags arraylist: " + tags.toString());
+
+
+
 
         }
 

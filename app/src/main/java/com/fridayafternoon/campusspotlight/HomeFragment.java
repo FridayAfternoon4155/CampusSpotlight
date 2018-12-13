@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,7 +15,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -41,6 +46,7 @@ public class HomeFragment extends android.app.Fragment {
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     Spinner spinner;
+    HomeAdapter.SendData data;
 
 
     /**
@@ -66,6 +72,7 @@ public class HomeFragment extends android.app.Fragment {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
             events = getArguments().getParcelableArrayList("events");
             tags = getArguments().getStringArrayList("tags");
+            data = getArguments().getParcelable("data");
             Log.i("info", "onCreate: array size: " + events.size());
         } else {
 
@@ -83,17 +90,7 @@ public class HomeFragment extends android.app.Fragment {
 
         eventList = view.findViewById(R.id.recyclerViewHome);
         eventList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new HomeAdapter(getActivity(), events, new HomeAdapter.SendData() {
-            @Override
-            public void deleteEvent(Event event) {
-
-            }
-
-            @Override
-            public void addEvent(Event event) {
-                mDatabase.child("events").push().setValue(event);
-            }
-        });
+        adapter = new HomeAdapter(getActivity(), events, data);
         eventList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
