@@ -25,6 +25,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
     Fragment selectedFragment = null;
 
 
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -84,10 +88,13 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     Toast.makeText(MainActivity.this, "Home Clicked", Toast.LENGTH_SHORT).show();
-                    new GetXMLAsync().execute();
+                    if (events.isEmpty()) {
+                        new GetXMLAsync().execute();
+                    }
                     selectedFragment = new HomeFragment();
                     Bundle bundle = new Bundle();
                     bundle.putParcelableArrayList("events", events);
+                    bundle.putStringArrayList("tags", tags);
                     selectedFragment.setArguments(bundle);
                     Log.i(TAG, "onNavigationItemSelected: SelectedFragment: " + selectedFragment.toString());
                     statement = true;
@@ -116,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
         }
     };
 
+
     private boolean isConnected() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
@@ -137,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
         new GetXMLAsync().execute();
 
         eventList = findViewById(R.id.recyclerViewHome);
+
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -303,7 +312,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
 
                                     events.add(event);
 
-                                    String[] array = event.getType().split("\\|");
+                                    String[] array = event.getType().trim().split("\\|");
 
                                     for (int j = 0; j < array.length; j++) {
                                         tagSet.add(array[j]);
@@ -350,13 +359,15 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
             fragmentTransaction.add(R.id.fragmentLayout, selectedFragment)
                     .addToBackStack(null)
                     .commit();
-
+            tags.addAll(tagSet);
             Bundle bundle = new Bundle();
             bundle.putParcelableArrayList("events", events);
+            bundle.putStringArrayList("tags", tags);
             selectedFragment.setArguments(bundle);
             dialog.dismiss();
-            tags.addAll(tagSet);
+
             Log.i(TAG, "onPostExecute: print tags arraylist: " + tags.toString());
+
         }
 
         @Override
@@ -377,9 +388,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnLi
 
         @Override
         protected String doInBackground(String... strings) {
-
-
-
 
             return null;
         }

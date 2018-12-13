@@ -59,7 +59,7 @@ public class EditProfile extends AppCompatActivity {
                 String repeat = etPasswordRepeat.getText().toString().trim();
                 final String firstName = etFirstName.getText().toString().trim();
                 final String lastName = etLastName.getText().toString().trim();
-                Toast.makeText(EditProfile.this, "Sign Up Button.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditProfile.this, "Submit Button.", Toast.LENGTH_SHORT).show();
                 if(firstName.equals("")){
                     Toast.makeText(EditProfile.this, "Enter First Name", Toast.LENGTH_SHORT).show();
                 } else if (lastName.equals("")){
@@ -97,12 +97,9 @@ public class EditProfile extends AppCompatActivity {
                                                         }
                                                     }
                                                 });
+                                        user.updateEmail(email);
+                                        user.updatePassword(password);
 
-                                    } else {
-                                        // If sign in fails, display a message to the user.
-                                        Log.w("demo", "signUpWithEmail:failure", task.getException());
-                                        Toast.makeText(EditProfile.this, "Authentication failed.",
-                                                Toast.LENGTH_SHORT).show();
 
                                     }
                                 }

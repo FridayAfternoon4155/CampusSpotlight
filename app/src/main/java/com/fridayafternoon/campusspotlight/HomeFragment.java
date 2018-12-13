@@ -1,5 +1,6 @@
 package com.fridayafternoon.campusspotlight;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -9,7 +10,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -23,18 +27,20 @@ import java.util.ArrayList;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class HomeFragment extends android.app.Fragment implements View.OnClickListener {
+public class HomeFragment extends android.app.Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
     ArrayList<Event> events = new ArrayList<>();
+    ArrayList<String> tags = new ArrayList<>();
     Activity context = getActivity();
     HomeAdapter adapter;
     RecyclerView eventList;
     String TAG = "info";
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    Spinner spinner;
 
 
     /**
@@ -59,6 +65,7 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
             events = getArguments().getParcelableArrayList("events");
+            tags = getArguments().getStringArrayList("tags");
             Log.i("info", "onCreate: array size: " + events.size());
         } else {
 
@@ -67,6 +74,7 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
 
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -89,9 +97,22 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
         eventList.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-        Log.i(TAG, "onCreateView: Reached line 89");
-        ImageButton pinButton = eventItem.findViewById(R.id.GoingButton);
-        pinButton.setOnClickListener(this);
+        spinner = view.findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, tags);
+        spinner.setAdapter(adapter);
+        spinner.setPrompt(getString(R.string.spinnerTitle));
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String tag = tags.get(position);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
         return view;
     }
@@ -114,13 +135,7 @@ public class HomeFragment extends android.app.Fragment implements View.OnClickLi
         mListener = null;
     }
 
-    @Override
-    public void onClick(View v) {
-        switch(v.getId()) {
-            case R.id.GoingButton:
-                Log.i(TAG, "onClick: reached onclick for gobutton");
-        }
-    }
+
 
 
     /**

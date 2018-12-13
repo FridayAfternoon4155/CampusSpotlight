@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             eventLocation = itemView.findViewById(R.id.eventLocation);
             date_time = itemView.findViewById(R.id.date_time);
             pinItem = itemView.findViewById(R.id.GoingButton);
+
         }
     }
 
