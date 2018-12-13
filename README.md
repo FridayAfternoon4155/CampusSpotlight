@@ -7,8 +7,8 @@ Students are unable to see important class emails when they are bombarded with c
 It uses FireBase as the backend for pulling and storing events.
 
 ## Getting Started
-1. Use an Android Device
-2. Download APK to Android Device
+1. Fork github url and import to Android Stuido
+2. Build Gradle and make sure everything works
 3. Run Application
 
 ## Features
